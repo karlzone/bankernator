@@ -15,7 +15,7 @@ TBank::TBank(string name, unsigned BLZ){
 }
 
 void TBank::addAccount(TAccount* account){
-	accountList[accountCounter++] = account;
+	//accountList[accountCounter++] = account;
 }
 
 unsigned TBank::getBlz() {
@@ -45,9 +45,9 @@ void TBank::print(){
 	cout << "Kontenliste:" << endl;
 	cout << "Kontonr. | Kundenname | Anz. Buchungen | Kontostand" << endl;
 	for (int i = 0; i < accountCounter; i++) {
-		cout << accountList[i]->getAccountNr() << '|';
-		cout << accountList[i]->getCustomerPtr()->getName() << '|';
-		cout << accountList[i]->getSumOfBookings() << '|';
+		//cout << accountList[i]->getAccountNr() << '|';
+		//cout << accountList[i]->getCustomerPtr()->getName() << '|';
+		//cout << accountList[i]->getSumOfBookings() << '|';
 		cout << "Kontostand";
 		cout << endl;
 	}

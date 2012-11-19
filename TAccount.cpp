@@ -17,8 +17,7 @@ TAccount::~TAccount() {
 	// TODO Auto-generated destructor stub
 }
 
-TAccount::TAccount(TBank *bankPtr, TCustomer *customerPtr, string accountNr,
-		string pin) {
+TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr, string pin) {
 	customerPtr->addAccount(this);
 	bankPtr->addAccount(this);
 	this->bankPtr = bankPtr;
@@ -28,6 +27,7 @@ TAccount::TAccount(TBank *bankPtr, TCustomer *customerPtr, string accountNr,
 
 	//TODO the amount of bookings
 	this->sumOfBookings = 0;
+	this->balance = 1;
 }
 
 string TAccount::getAccountNr() {
@@ -59,13 +59,14 @@ int TAccount::getSumOfBookings() {
 	return sumOfBookings;
 }
 
+/* TODO
 void TAccount::setSumOfBookings(int sumOfBookings) {
 	this->sumOfBookings = sumOfBookings;
-}
+}*/
 
 void TAccount::print() {
 	customerPtr->print();
 	cout << "Account number:  " << accountNr << endl;
 	cout << "Bookings:        " << sumOfBookings << endl;
-	cout << "Balance:         " << "0.00 EUR" << endl;
+	//cout << "Balance:         " << balance << endl;
 }

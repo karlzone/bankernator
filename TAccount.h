@@ -13,12 +13,14 @@
 
 #include "TBank.h"
 #include "TCustomer.h"
+#include "TMoney.h"
 
 
 using namespace std;
 
 class TBank;
 class TCustomer;
+class TMoney;
 
 class TAccount {
 private:
@@ -31,10 +33,13 @@ private:
 
 	int sumOfBookings;
 
+	TBank *bank;
+	TMoney balance;
+
 
 public:
-	TAccount();
-	TAccount(TBank*, TCustomer *, string, string);
+	//TAccount();
+	TAccount(TCustomer *, TBank*, string, string);
 	virtual ~TAccount();
 
 

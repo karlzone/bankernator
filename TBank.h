@@ -5,28 +5,30 @@
 //  Original author: Runge
 ///////////////////////////////////////////////////////////
 
-#if !defined(EA_ABC9D122_9EC7_4555_A420_8FA79E39912F__INCLUDED_)
-#define EA_ABC9D122_9EC7_4555_A420_8FA79E39912F__INCLUDED_
+#ifndef TBANK_H_
+#define TBANK_H_
 
 #include <string>
 
 #include "TAccount.h"
+//#include "TBooking.h"
 
 using namespace std;
 
 #define MAXBANKACCOUNTS 100
 
 class TAccount;
+
 class TBank
 {
 private:
 	string name;
 	unsigned BLZ;
-	TAccount *accountList[MAXBANKACCOUNTS];
+	static TAccount *accountList[MAXBANKACCOUNTS];
 	int accountCounter;
 public:
 	
-	TBank(string,unsigned);
+	TBank(string, unsigned);
 	virtual ~TBank();
 
 	int getAccountCounter();
@@ -42,4 +44,4 @@ public:
 	void print();
 
 };
-#endif // !defined(EA_ABC9D122_9EC7_4555_A420_8FA79E39912F__INCLUDED_)
+#endif // TBANK_H_
