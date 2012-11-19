@@ -13,10 +13,10 @@
 #include "TDate.h"
 #include "TMoney.h"
 #include "TTime.h"
+#include "TAccount.h"
 
 namespace std {
 
-class TAccount;
 
 class TBooking {
 	TMoney amount;
@@ -29,10 +29,12 @@ class TBooking {
 
 
 public:
-	TBooking();
+	TBooking(TMoney, TAccount *, TAccount *,
+			TDate , TTime , string);
 	virtual ~TBooking();
-	bool isPrinted() const;
-	void setPrinted(bool printed);
+	bool isPrinted();
+	void printBooking();
+	//void setPrinted(bool printed);
 };
 
 } /* namespace std */

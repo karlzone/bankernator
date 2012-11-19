@@ -14,6 +14,7 @@
 #include "TBank.h"
 #include "TCustomer.h"
 #include "TMoney.h"
+#include "TBooking.h"
 
 
 using namespace std;
@@ -36,6 +37,9 @@ private:
 	TBank *bank;
 	TMoney balance;
 
+	//FIXME
+	TBooking bookingList[];
+
 
 public:
 	//TAccount();
@@ -56,6 +60,8 @@ public:
 	void setSumOfBookings(int sumOfBookings);
 
 	void print();
+
+	void printAccountStatement();
 
 };
 

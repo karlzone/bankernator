@@ -27,7 +27,7 @@ TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr, str
 
 	//TODO the amount of bookings
 	this->sumOfBookings = 0;
-	this->balance = 1;
+	this->balance = 123456;
 }
 
 string TAccount::getAccountNr() {
@@ -68,5 +68,14 @@ void TAccount::print() {
 	customerPtr->print();
 	cout << "Account number:  " << accountNr << endl;
 	cout << "Bookings:        " << sumOfBookings << endl;
-	//cout << "Balance:         " << balance << endl;
+	cout << "Balance:         " << 00000 << endl;
+}
+
+void TAccount::printAccountStatement() {
+	//TODO Account statement print with status printed=false
+	for(int i = 0; i < sumOfBookings; i++) {
+		if(this->bookingList[i].isPrinted() == false) {
+			cout << "BLA" << endl;
+		}
+	}
 }
