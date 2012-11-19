@@ -28,7 +28,7 @@ private:
 	//TODO array of pointers on TAccount
 	
 public:
-	//TCustomer();
+	TCustomer();
 	TCustomer(string name, TDate birthday, string street, string streetnr, string postcode, string city);
 	virtual ~TCustomer();
 

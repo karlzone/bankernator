@@ -33,6 +33,7 @@ private:
 
 
 public:
+	TAccount();
 	TAccount(TBank*, TCustomer *, string, string);
 	virtual ~TAccount();
 

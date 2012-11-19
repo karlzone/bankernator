@@ -1,69 +1,115 @@
 /*
-* TAccount.cpp
-*
-* Created on: 28 Oct 2012
-* Author: karsten
-*/
+ * TCustomer.cpp
+ *
+ *  Created on: 28 Oct 2012
+ *      Author: karsten
+ */
+
+#include <iostream>
+#include <string>
 
 #include "TAccount.h"
+#include "TCustomer.h"
 
 using namespace std;
 
-/*TAccount::TAccount() {
-// TODO Auto-generated constructor stub
-}*/
-
-TAccount::~TAccount() {
-// TODO Auto-generated destructor stub
+TCustomer::~TCustomer() {
+	// TODO Auto-generated destructor stub
 }
 
-TAccount::TAccount(TBank *bankPtr, TCustomer *customerPtr, string accountNr, string pin) {
-customerPtr->addAccount(this);
-bankPtr->addAccount(this);
-this->bankPtr = bankPtr;
-this->customerPtr = customerPtr;
-this->accountNr = accountNr;
-this->pin = pin;
-//TODO the amount of bookings
-this->sumOfBookings = 0;
+TCustomer::TCustomer(string name, TDate birthday, string street,
+		string streetnr, string postcode, string city) {
+	this->name = name;
+	this->street = street;
+	this->streetnr = streetnr;
+	this->postcode = postcode;
+	this->city = city;
+	this->birthday = birthday;
+	this->sumOfTAccounts = 0;
+//	accountPtr[0] = getAccountPtr();
 }
 
+TDate TCustomer::getBirthday() {
+	return birthday;
+}
 
-string TAccount::getAccountNr() {
-return accountNr;
+void TCustomer::setBirthday(const TDate birthday) {
+	this->birthday = birthday;
+}
+
+string TCustomer::getCity() {
+	return city;
+}
+
+void TCustomer::setCity(string city) {
+	this->city = city;
+}
+
+string TCustomer::getName() {
+	return name;
+}
+
+void TCustomer::setName(string name) {
+	this->name = name;
+}
+
+string TCustomer::getPostcode() {
+	return postcode;
+}
+
+void TCustomer::setPostcode(string postcode) {
+	this->postcode = postcode;
+}
+
+string TCustomer::getStreet() {
+	return street;
+}
+
+void TCustomer::setStreet(string street) {
+	this->street = street;
+}
+
+string TCustomer::getStreetnr() {
+	return streetnr;
+}
+
+void TCustomer::setStreetnr(string streetnr) {
+	this->streetnr = streetnr;
+}
+
+TAccount* TCustomer::getAccountPtr(){
+	return accountPtr[0];
 }
 /*
-void TAccount::setAccountNr(string accountNr) {
-this->accountNr = accountNr;
+void TCustomer::setAccountPtr(TAccount* accountPtr) {
+	this->accountPtr[0] = accountPtr;
 }*/
 
-TCustomer* TAccount::getCustomerPtr() {
-return customerPtr;
+int TCustomer::getSumOfTAccounts() {
+	return sumOfTAccounts;
 }
 /*
-void TAccount::setCustomerPtr(TCustomer* customerPtr) {
-this->customerPtr = customerPtr;
+void TCustomer::setSumOfTAccounts(int sumOfTAccounts) {
+	this->sumOfTAccounts = sumOfTAccounts;
 }*/
 
-string TAccount::getPin() {
-return pin;
+void TCustomer::print() {
+	cout << name << endl;
+	cout << street << endl;
+	cout << postcode << " " << city << endl;
+	cout << "born on: ";
+	birthday.print();
+	cout << endl;
+	cout << "Accounts:" << endl;
+	for (int i = 0; i < sumOfTAccounts; i++) {
+		cout << "-  Account number:   " ;
+		//cout << i << endl;
+		cout << accountPtr[i]->getAccountNr() << endl;
+		//accountPtr[i] ->printAccountNr();
+	}
+
 }
 
-void TAccount::setPin(string pin) {
-this->pin = pin;
-}
-
-int TAccount::getSumOfBookings() {
-return sumOfBookings;
-}
-
-void TAccount::setSumOfBookings(int sumOfBookings) {
-this->sumOfBookings = sumOfBookings;
-}
-
-void TAccount::print() {
-customerPtr->print();
-cout << "Account number: " << accountNr << endl;
-cout << "Bookings: " << sumOfBookings << endl;
-cout << "Balance: " << "0.00 EUR" << endl;
+void TCustomer::addAccount(TAccount* accountPtr) {
+	this->accountPtr[sumOfTAccounts++] = accountPtr;
 }
