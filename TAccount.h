@@ -12,10 +12,10 @@
 #include <string.h>
 
 #include "TBank.h"
+#include "bankernatorFktSum.h"
 #include "TCustomer.h"
 #include "TMoney.h"
 #include "TBooking.h"
-
 
 using namespace std;
 
@@ -40,12 +40,10 @@ private:
 	//FIXME
 	TBooking *bookingList[];
 
-
 public:
 	//TAccount();
 	TAccount(TCustomer *, TBank*, string, string);
 	virtual ~TAccount();
-
 
 	string getAccountNr();
 	//void setAccountNr(string accountNr);
@@ -62,7 +60,13 @@ public:
 	void print();
 
 	void printAccountStatement();
+	TMoney getBalance();
+	void addBooking(TBooking*);
+	void setBalance(TMoney balance);
 
+	unsigned getBLZ();
+
+	bool equal_to(TAccount*);
 };
 
 #endif /* TACCOUNT_H_ */

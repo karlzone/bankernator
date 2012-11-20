@@ -12,34 +12,32 @@
 
 using namespace std;
 
-TDate::TDate(){
+TDate::TDate() {
 	time_t Zeitstempel;
 	tm *now;
 	Zeitstempel = time(0);
 	now = localtime(&Zeitstempel);
-	year = now->tm_year+1900;
-	month = now->tm_mon+1;
+	year = now->tm_year + 1900;
+	month = now->tm_mon + 1;
 	day = now->tm_mday;
 }
 
-TDate::~TDate(){
+TDate::~TDate() {
 }
 
-TDate::TDate(int day, int month, int year){
-	this->year=year;
-	this->month=month;
-	this->day=day;
+TDate::TDate(int day, int month, int year) {
+	this->year = year;
+	this->month = month;
+	this->day = day;
 }
 
-
-void TDate::print(){
-	//printf("%02d.%02d.%04d", day, month, year);
+void TDate::print() {
 	char oldFill = cout.fill();
 	cout.fill('0');
 
-	cout.width(2); cout << day  << ".";
-	cout.width(2); cout << month << "." ;
-	cout.width(4); cout << year;
+	cout.width(2);	cout << day << '.';
+	cout.width(2);	cout << month << '.';
+	cout.width(4);	cout << year;
 
 	cout.fill(oldFill);
 	cout.flush();

@@ -20,16 +20,17 @@ using namespace std;
 class TAccount;
 
 class TCustomer {
-private: 
+private:
 	string name, street, streetnr, postcode, city;
 	TDate birthday;
 	int sumOfTAccounts;
 	TAccount *accountPtr[MAXACCOUNTS];
 	//TODO array of pointers on TAccount
-	
+
 public:
 	TCustomer();
-	TCustomer(string name, TDate birthday, string street, string streetnr, string postcode, string city);
+	TCustomer(string name, TDate birthday, string street, string streetnr,
+			string postcode, string city);
 	virtual ~TCustomer();
 
 	TDate getBirthday();
@@ -60,6 +61,5 @@ public:
 
 	void print();
 };
-
 
 #endif /* TCUSTOMER_H_ */

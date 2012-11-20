@@ -17,7 +17,6 @@
 
 using namespace std;
 
-
 class TBooking {
 
 private:
@@ -29,13 +28,11 @@ private:
 	string comment;
 	bool printed;
 
-
 public:
-	TBooking(TMoney, TAccount*, TAccount*,
-			TDate , TTime , string);
+	TBooking(TMoney, TAccount*, TAccount*, TDate, TTime, string);
 	virtual ~TBooking();
 	bool isPrinted();
-	void printBooking();
+	void printBooking(TAccount*, int w);
 	//void setPrinted(bool printed);
 };
 

@@ -11,14 +11,14 @@ using namespace std;
 
 TAccount *TBank::accountList[MAXBANKACCOUNTS] = { false };
 
-TBank::TBank(string name, unsigned BLZ){
+TBank::TBank(string name, unsigned BLZ) {
 	this->name = name;
 	this->BLZ = BLZ;
 	accountCounter = 0;
 }
 
-void TBank::addAccount(TAccount* account){
-	accountList[accountCounter] = account;
+void TBank::addAccount(TAccount* account) {
+	this->accountList[accountCounter++] = account;
 }
 
 unsigned TBank::getBlz() {
@@ -41,22 +41,32 @@ void TBank::setName(string name) {
 	this->name = name;
 }
 
-void TBank::print(){
+void TBank::print() {
+
+	int w = 20;								//Spaltenbreite in der Anzeige
 	cout << name << endl;
 	cout << BLZ << endl;
 	cout << "Amount of accounts: " << accountCounter << endl;
 	cout << "Account list" << endl;
-	cout << "Accountnr. | Customer name | Amount of bookings | Balance" << endl;
-	for (int i = 0; i < accountCounter; i++) {
-		cout << accountList[i]->getAccountNr() << '|';
-		cout << accountList[i]->getCustomerPtr()->getName() << '|';
-		cout << accountList[i]->getSumOfBookings() << '|';
 
-		cout << "Kontostand";
+	char oldFill = cout.fill();
+	cout.fill(' ');
+	//Kopfzeile
+	cout.width(w);		cout << "Accountnr." << '|';
+	cout.width(w);		cout << "Customer name" << '|';
+	cout.width(w);		cout << "Amount of bookings" << '|';
+	cout.width(w);		cout << "Balance" << endl;
+	//Tabellenkörper
+	for (int i = 0; i < accountCounter; i++) {
+		cout.width(w);		cout << accountList[i]->getAccountNr() << '|';
+		cout.width(w);		cout << accountList[i]->getCustomerPtr()->getName() << '|';
+		cout.width(w);		cout << accountList[i]->getSumOfBookings() << '|';
+
+		cout.width(w);		accountList[i]->getBalance().print();
 		cout << endl;
 	}
-
+	cout.fill(oldFill);
 }
-TBank::~TBank(){
+TBank::~TBank() {
 
 }

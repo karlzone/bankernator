@@ -43,6 +43,15 @@ string TMoney::getCurrency() {
 	return currency;
 }
 
+TMoney TMoney::operator+(TMoney & b){
+	return TMoney(this->amount+b.getAmount());
+	//return TMoney(this.amount+b.amount);
+}
+
+TMoney TMoney::operator-(TMoney &b){
+	return TMoney(this->amount-b.getAmount());
+}
+
 void TMoney::print() {
 	ios::fmtflags oldCout;
 	ios::fmtflags newCout = (ios::dec | ios::fixed);	//decimal and fixed

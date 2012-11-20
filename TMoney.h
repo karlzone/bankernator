@@ -8,7 +8,6 @@
 #ifndef TMONEY_H_
 #define TMONEY_H_
 
-
 //#include <stdio.h>
 #include <string>
 
@@ -23,7 +22,8 @@ public:
 	TMoney();
 	virtual ~TMoney();
 	TMoney(double);
-
+	TMoney operator+(TMoney &b);
+	TMoney operator-(TMoney &b);
 	void setAmount(double x);
 	double getAmount();
 	void setCurrency(string cur);

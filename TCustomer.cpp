@@ -77,21 +77,21 @@ void TCustomer::setStreetnr(string streetnr) {
 	this->streetnr = streetnr;
 }
 
-TAccount* TCustomer::getAccountPtr(){
+TAccount* TCustomer::getAccountPtr() {
 	return accountPtr[0];
 }
 /*
-void TCustomer::setAccountPtr(TAccount* accountPtr) {
-	this->accountPtr[0] = accountPtr;
-}*/
+ void TCustomer::setAccountPtr(TAccount* accountPtr) {
+ this->accountPtr[0] = accountPtr;
+ }*/
 
 int TCustomer::getSumOfTAccounts() {
 	return sumOfTAccounts;
 }
 /*
-void TCustomer::setSumOfTAccounts(int sumOfTAccounts) {
-	this->sumOfTAccounts = sumOfTAccounts;
-}*/
+ void TCustomer::setSumOfTAccounts(int sumOfTAccounts) {
+ this->sumOfTAccounts = sumOfTAccounts;
+ }*/
 
 void TCustomer::print() {
 	cout << name << endl;
@@ -102,7 +102,7 @@ void TCustomer::print() {
 	cout << endl;
 	cout << "Accounts:" << endl;
 	for (int i = 0; i < sumOfTAccounts; i++) {
-		cout << "-  Account number:   " ;
+		cout << "-  Account number:   ";
 		//cout << i << endl;
 		cout << accountPtr[i]->getAccountNr() << endl;
 		//accountPtr[i] ->printAccountNr();

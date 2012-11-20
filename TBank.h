@@ -19,27 +19,26 @@ using namespace std;
 
 class TAccount;
 
-class TBank
-{
+class TBank {
 private:
 	string name;
 	unsigned BLZ;
 	static TAccount *accountList[MAXBANKACCOUNTS];
 	int accountCounter;
 public:
-	
+
 	TBank(string, unsigned);
 	virtual ~TBank();
 
 	int getAccountCounter();
 
 	void addAccount(TAccount*);
-	
-	unsigned getBlz() ;
+
+	unsigned getBlz();
 	void setBlz(unsigned blz);
-	
-	string getName() ;
-	void setName( string name);
+
+	string getName();
+	void setName(string name);
 
 	void print();
 
