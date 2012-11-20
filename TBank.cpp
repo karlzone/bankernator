@@ -7,6 +7,9 @@
 
 #include "TBank.h"
 
+using namespace std;
+
+TAccount *TBank::accountList[MAXBANKACCOUNTS] = { false };
 
 TBank::TBank(string name, unsigned BLZ){
 	this->name = name;
@@ -15,7 +18,7 @@ TBank::TBank(string name, unsigned BLZ){
 }
 
 void TBank::addAccount(TAccount* account){
-	this->accountList[accountCounter] = account;
+	accountList[accountCounter] = account;
 }
 
 unsigned TBank::getBlz() {

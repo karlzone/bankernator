@@ -22,6 +22,7 @@ using namespace std;
 class TBank;
 class TCustomer;
 class TMoney;
+class TBooking;
 
 class TAccount {
 private:
@@ -34,11 +35,10 @@ private:
 
 	int sumOfBookings;
 
-	TBank *bank;
 	TMoney balance;
 
 	//FIXME
-	TBooking bookingList[];
+	TBooking *bookingList[];
 
 
 public:

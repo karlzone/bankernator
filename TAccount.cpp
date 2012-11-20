@@ -17,7 +17,7 @@ TAccount::~TAccount() {
 	// TODO Auto-generated destructor stub
 }
 
-TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr, string pin) {
+TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr, string pin){
 	customerPtr->addAccount(this);
 	bankPtr->addAccount(this);
 	this->bankPtr = bankPtr;
@@ -74,7 +74,7 @@ void TAccount::print() {
 void TAccount::printAccountStatement() {
 	//TODO Account statement print with status printed=false
 	for(int i = 0; i < sumOfBookings; i++) {
-		if(this->bookingList[i].isPrinted() == false) {
+		if(bookingList[i]->isPrinted() == false) {
 			cout << "BLA" << endl;
 		}
 	}

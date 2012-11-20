@@ -11,7 +11,7 @@
 #include "TBooking.h"
 
 
-namespace std {
+using namespace std;
 
 TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
 		TDate date, TTime time, string comment) {
@@ -45,5 +45,3 @@ void TBooking::printBooking() {
 TBooking::~TBooking() {
 // TODO Auto-generated destructor stub
 }
-
-} /* namespace std */

@@ -15,10 +15,12 @@
 #include "TTime.h"
 #include "TAccount.h"
 
-namespace std {
+using namespace std;
 
 
 class TBooking {
+
+private:
 	TMoney amount;
 	TAccount* sourcePtr;
 	TAccount* destinPtr;
@@ -29,7 +31,7 @@ class TBooking {
 
 
 public:
-	TBooking(TMoney, TAccount *, TAccount *,
+	TBooking(TMoney, TAccount*, TAccount*,
 			TDate , TTime , string);
 	virtual ~TBooking();
 	bool isPrinted();
@@ -37,5 +39,4 @@ public:
 	//void setPrinted(bool printed);
 };
 
-} /* namespace std */
 #endif /* TBOOKING_H_ */
