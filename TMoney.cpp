@@ -52,6 +52,10 @@ TMoney TMoney::operator-(TMoney &b){
 	return TMoney(this->amount-b.getAmount());
 }
 
+bool TMoney::operator <(TMoney &b){
+	return this->amount<b.getAmount();
+}
+
 void TMoney::print() {
 	ios::fmtflags oldCout;
 	ios::fmtflags newCout = (ios::dec | ios::fixed);	//decimal and fixed

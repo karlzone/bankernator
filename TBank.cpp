@@ -5,6 +5,8 @@
 //  Original author: Runge
 ///////////////////////////////////////////////////////////
 
+//#define DEBUG
+
 #include "TBank.h"
 
 using namespace std;
@@ -12,9 +14,10 @@ using namespace std;
 TAccount *TBank::accountList[MAXBANKACCOUNTS] = { false };
 
 TBank::TBank(string name, unsigned BLZ) {
+	accountCounter = 0;
 	this->name = name;
 	this->BLZ = BLZ;
-	accountCounter = 0;
+
 }
 
 void TBank::addAccount(TAccount* account) {
@@ -57,6 +60,13 @@ void TBank::print() {
 	cout.width(w);		cout << "Amount of bookings" << '|';
 	cout.width(w);		cout << "Balance" << endl;
 	//Tabellenkörper
+#ifdef DEBUG
+	cout << "0. Eintrag Nr: " << accountList[0]->getAccountNr() << endl;
+	cout << "0. Eintrag Name: " << accountList[0]->getCustomerPtr()->getName() << endl;
+
+	cout << "1. Eintrag Nr: " << accountList[1]->getAccountNr() << endl;
+	cout << "1. Eintrag Name: " << accountList[1]->getCustomerPtr()->getName() << endl;
+#endif
 	for (int i = 0; i < accountCounter; i++) {
 		cout.width(w);		cout << accountList[i]->getAccountNr() << '|';
 		cout.width(w);		cout << accountList[i]->getCustomerPtr()->getName() << '|';

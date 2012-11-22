@@ -24,6 +24,7 @@ public:
 	TMoney(double);
 	TMoney operator+(TMoney &b);
 	TMoney operator-(TMoney &b);
+	bool operator<(TMoney &b);
 	void setAmount(double x);
 	double getAmount();
 	void setCurrency(string cur);
