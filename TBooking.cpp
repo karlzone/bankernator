@@ -15,11 +15,6 @@ using namespace std;
 TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 		TDate date, TTime time, string comment) {
 // TODO Auto-generated constructor stub
-	sourcePtr->addBooking(this);
-	destinPtr->addBooking(this);
-	sourcePtr->setBalance((sourcePtr->getBalance())-amount);
-	destinPtr->setBalance((destinPtr->getBalance())+amount);
-
 	this->amount = amount;
 	this->sourcePtr = sourcePtr;
 	this->destinPtr = destinPtr;
@@ -29,6 +24,17 @@ TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 
 	//TODO Print status for Bookings
 	this->printed = false;
+
+	cout << "Adr. K TBooking vorher Dest: " << this->destinPtr->getCustomerPtr() << endl;
+	cout << "Adr. K TBooking vorher Sour: " << this->sourcePtr->getCustomerPtr() << endl;
+
+	this->sourcePtr->addBooking(this);
+	this->destinPtr->addBooking(this);
+//	sourcePtr->setBalance((sourcePtr->getBalance())-amount);
+//	destinPtr->setBalance((destinPtr->getBalance())+amount);
+
+	cout << "Adr. K TBooking nachher Dest: " << this->destinPtr->getCustomerPtr() << endl;
+	cout << "Adr. K TBooking nachher Sour: " << this->sourcePtr->getCustomerPtr() << endl;
 
 }
 

@@ -63,7 +63,7 @@ void TBank::print() {
 	//Tabellenkörper
 	for (int i = 0; i < accountCounter; i++) {
 		cout.width(w);		cout << accountList[i]->getAccountNr() << '|';
-		cout.width(w);		cout << accountList[i]->getCustomerPtr()->getName() << '|';
+		cout.width(w);		cout << "Adr. RR" << accountList[i]->getCustomerPtr() << "|" << flush; //cout << (accountList[i]->getCustomerPtr())->getName() << '|';
 		cout.width(w);		cout << accountList[i]->getSumOfBookings() << '|';
 
 		cout.width(w);		accountList[i]->getBalance().print();

@@ -20,12 +20,13 @@ TAccount::~TAccount() {
 
 TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 		string pin) {
-	customerPtr->addAccount(this);
+ 	customerPtr->addAccount(this);
 	bankPtr->addAccount(this);
 	this->bankPtr = bankPtr;
 	this->customerPtr = customerPtr;
 	this->accountNr = accountNr;
 	this->pin = pin;
+	cout << "Adresse RR (K TAccount): " << this->customerPtr << endl;
 
 	//TODO the amount of bookings
 	this->sumOfBookings = 0;
@@ -37,6 +38,7 @@ void TAccount::setBalance(TMoney balance) {
 }
 
 void TAccount::addBooking(TBooking *bookingPtr){
+	cout << "Adr. addbooking Nr. " << sumOfBookings << " Adr. " << (bookingPtr->sourcePtr)->getCustomerPtr() << endl;
 	this->bookingList[sumOfBookings++] = bookingPtr;
 }
 
@@ -98,7 +100,7 @@ void TAccount::printAccountStatement() {
 
 		cout << "Kontoauszug vom "; TDate().print(); cout << endl;
 		cout << "Kontonr.: " << this->accountNr <<"; BLZ " << this->bankPtr->getBlz() << endl;
-		cout << "Kontoinhaber: " << this->customerPtr->getName() << endl;
+		cout << "Kontoinhaber: " << (this->customerPtr)->getName() << endl;
 
 		cout.width(w); cout << "Datum" << '|';
 		cout.width(w); cout << "Betrag" << '|';

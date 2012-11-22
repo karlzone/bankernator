@@ -105,7 +105,7 @@ void TCustomer::print() {
 	for (int i = 0; i < sumOfTAccounts; i++) {
 		cout << "-  Account number:   ";
 		//cout << i << endl;
-		cout << accountPtr[i]->getAccountNr() << "(Balance:    ";
+		cout << accountPtr[i]->getAccountNr() << "  (Balance:    ";
 		accountPtr[i]->printBalance();
 		cout << ")" << endl;
 		//accountPtr[i] ->printAccountNr();
