@@ -9,7 +9,7 @@
 #define TACCOUNT_H_
 
 #include <iostream>
-#include <string.h>
+#include <string>
 
 #include "TBank.h"
 #include "bankernatorFktSum.h"
@@ -63,6 +63,7 @@ public:
 	void setBalance(TMoney balance);
 
 	unsigned getBLZ();
+	void printBalance();
 
 	bool equal_to(TAccount*);
 };

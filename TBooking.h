@@ -21,6 +21,10 @@
 
 using namespace std;
 
+class TAccount;
+class TDate;
+class TTime;
+
 class TBooking {
 
 private:

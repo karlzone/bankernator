@@ -43,7 +43,7 @@ string TMoney::getCurrency() {
 	return currency;
 }
 
-TMoney TMoney::operator+(TMoney & b){
+TMoney TMoney::operator+(TMoney &b){
 	return TMoney(this->amount+b.getAmount());
 	//return TMoney(this.amount+b.amount);
 }
@@ -52,9 +52,13 @@ TMoney TMoney::operator-(TMoney &b){
 	return TMoney(this->amount-b.getAmount());
 }
 
+<<<<<<< HEAD
 bool TMoney::operator <(TMoney &b){
 	return this->amount<b.getAmount();
 }
+=======
+
+>>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 
 void TMoney::print() {
 	ios::fmtflags oldCout;

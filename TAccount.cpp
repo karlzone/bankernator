@@ -7,6 +7,7 @@
 
 #include "TAccount.h"
 
+
 using namespace std;
 
 TAccount::~TAccount() {
@@ -15,16 +16,21 @@ TAccount::~TAccount() {
 
 TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 		string pin) {
-	customerPtr->addAccount(this);
+ 	customerPtr->addAccount(this);
 	bankPtr->addAccount(this);
 	this->bankPtr = bankPtr;
 	this->customerPtr = customerPtr;
 	this->accountNr = accountNr;
 	this->pin = pin;
+	cout << "Adresse RR (K TAccount): " << this->customerPtr << endl;
 
 	//TODO the amount of bookings
 	this->sumOfBookings = 0;
+<<<<<<< HEAD
 	this->balance = 0;//Startguthaben
+=======
+	this->balance = 0;
+>>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 }
 
 void TAccount::setBalance(TMoney balance) {
@@ -32,6 +38,7 @@ void TAccount::setBalance(TMoney balance) {
 }
 
 void TAccount::addBooking(TBooking *bookingPtr){
+	cout << "Adr. addbooking Nr. " << sumOfBookings << " Adr. " << (bookingPtr->sourcePtr)->getCustomerPtr() << endl;
 	this->bookingList[sumOfBookings++] = bookingPtr;
 }
 
@@ -72,7 +79,13 @@ void TAccount::print() {
 	customerPtr->print();
 	cout << "Account number:  " << accountNr << endl;
 	cout << "Bookings:        " << sumOfBookings << endl;
+<<<<<<< HEAD
 	cout << "Balance:         "; balance.print(); cout  << endl;
+=======
+	cout << "Balance:         " ;
+	printBalance();
+	cout << endl;
+>>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 }
 
 TMoney TAccount::getBalance() {
@@ -91,7 +104,7 @@ void TAccount::printAccountStatement() {
 
 		cout << "Kontoauszug vom "; TDate().print(); cout << endl;
 		cout << "Kontonr.: " << this->accountNr <<"; BLZ " << this->bankPtr->getBlz() << endl;
-		cout << "Kontoinhaber: " << this->customerPtr->getName() << endl;
+		cout << "Kontoinhaber: " << (this->customerPtr)->getName() << endl;
 
 		cout.width(w); cout << "Datum" << '|';
 		cout.width(w); cout << "Betrag" << '|';
@@ -119,8 +132,17 @@ unsigned TAccount::getBLZ(){
 	return this->bankPtr->getBlz();
 }
 
+<<<<<<< HEAD
 bool TAccount::equal_to(TAccount *accPtr){
 	if( ( (bankPtr->getBlz()) == (accPtr->getBLZ()) ) && ( (accountNr == accPtr->getAccountNr() )) )return true;
+=======
+void TAccount::printBalance() {
+	cout << balance.getAmount() << " " << balance.getCurrency();
+}
+
+bool TAccount::equal_to(TAccount *accPTr){
+	if( ( this->bankPtr->getBlz() == accPTr->getBLZ() ) && ( this->accountNr == accPTr->getAccountNr() ) )return true;
+>>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 	return false;
 }
 
