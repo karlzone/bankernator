@@ -7,6 +7,7 @@
 
 #include "TAccount.h"
 
+
 using namespace std;
 
 /*TAccount::TAccount() {
@@ -28,7 +29,7 @@ TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 
 	//TODO the amount of bookings
 	this->sumOfBookings = 0;
-	this->balance = 100;//Startguthaben
+	this->balance = 0;
 }
 
 void TAccount::setBalance(TMoney balance) {
@@ -76,7 +77,9 @@ void TAccount::print() {
 	customerPtr->print();
 	cout << "Account number:  " << accountNr << endl;
 	cout << "Bookings:        " << sumOfBookings << endl;
-	cout << "Balance:         " << 00000 << endl;
+	cout << "Balance:         " ;
+	printBalance();
+	cout << endl;
 }
 
 TMoney TAccount::getBalance() {
@@ -121,6 +124,10 @@ void TAccount::printAccountStatement() {
 }
 unsigned TAccount::getBLZ(){
 	return this->bankPtr->getBlz();
+}
+
+void TAccount::printBalance() {
+	cout << balance.getAmount() << " " << balance.getCurrency();
 }
 
 bool TAccount::equal_to(TAccount *accPTr){

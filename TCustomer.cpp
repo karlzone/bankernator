@@ -78,7 +78,7 @@ void TCustomer::setStreetnr(string streetnr) {
 }
 
 TAccount* TCustomer::getAccountPtr() {
-	return accountPtr[0];
+	return accountPtr[sumOfTAccounts];
 }
 /*
  void TCustomer::setAccountPtr(TAccount* accountPtr) {
@@ -94,6 +94,7 @@ int TCustomer::getSumOfTAccounts() {
  }*/
 
 void TCustomer::print() {
+
 	cout << name << endl;
 	cout << street << endl;
 	cout << postcode << " " << city << endl;
@@ -104,7 +105,9 @@ void TCustomer::print() {
 	for (int i = 0; i < sumOfTAccounts; i++) {
 		cout << "-  Account number:   ";
 		//cout << i << endl;
-		cout << accountPtr[i]->getAccountNr() << endl;
+		cout << accountPtr[i]->getAccountNr() << "(Balance:    ";
+		accountPtr[i]->printBalance();
+		cout << ")" << endl;
 		//accountPtr[i] ->printAccountNr();
 	}
 

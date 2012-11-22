@@ -8,16 +8,18 @@
 #include <iostream>
 
 #include "TBooking.h"
+//#include "TAccount.h"
 
 using namespace std;
 
-TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
+TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 		TDate date, TTime time, string comment) {
 // TODO Auto-generated constructor stub
 	sourcePtr->addBooking(this);
 	destinPtr->addBooking(this);
 	sourcePtr->setBalance((sourcePtr->getBalance())-amount);
 	destinPtr->setBalance((destinPtr->getBalance())+amount);
+
 	this->amount = amount;
 	this->sourcePtr = sourcePtr;
 	this->destinPtr = destinPtr;
@@ -39,7 +41,14 @@ void TBooking::printBooking(TAccount * accPTr, int w) {
 	//cout << date << "|" << sourcePtr->customerPtr->getName() << "|" << comment << endl;
 	this->printed = true;
 	cout.width(w-10); cout << ""; 	this->date.print(); 	cout << '|';
-	cout.width(w); 	cout << this->amount.getAmount() << '|';
+
+	cout.width(w-4);
+	cout.precision(2);
+	cout << fixed << this->amount.getAmount() << " ";
+	cout.width(w-20);
+	cout << this->amount.getCurrency() << '|';
+
+
 	if(accPTr->equal_to(destinPtr)){
 		cout.width(w); cout << this->sourcePtr->getCustomerPtr()->getName() << '|';
 	}else {

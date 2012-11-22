@@ -28,6 +28,8 @@ public:
 	double getAmount();
 	void setCurrency(string cur);
 	string getCurrency();
+	//TMoney increaseBalance(double);
+	//TMoney decreaseBalance(double);
 	void print();
 };
 

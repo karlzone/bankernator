@@ -9,16 +9,20 @@
 
 using namespace std;
 
-TAccount *TBank::accountList[MAXBANKACCOUNTS] = { false };
+TAccount *TBank::accountList[MAXBANKACCOUNTS] = { NULL };
+
 
 TBank::TBank(string name, unsigned BLZ) {
 	this->name = name;
 	this->BLZ = BLZ;
 	accountCounter = 0;
+
 }
 
 void TBank::addAccount(TAccount* account) {
 	this->accountList[accountCounter++] = account;
+	//accountCounter++;
+	//this->accountList[0] = account;
 }
 
 unsigned TBank::getBlz() {

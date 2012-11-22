@@ -48,14 +48,14 @@ int main() {
 	TBank Bank1("Berliner Bank", 10020000);
 	TAccount Geldquelle(&Bundesdruckerei, &Bank1, "0", "0000");
 	TAccount Konto1(&Kunde1, &Bank1, "1234567890", "9999");
-	TAccount Konto2(&Kunde1, &Bank1, "9876543120", "0101");
-	TAccount Konto3(&Kunde2, &Bank1, "111333555", "1357");
+	//TAccount Konto2(&Kunde2, &Bank1, "9876543120", "0101");
+	TAccount Konto3(&Kunde1, &Bank1, "111333555", "1357");
 	TBooking Buchung1(TMoney(150.0), &Konto1, &Geldquelle, TDate(), TTime(),
 			string("Startguthaben"));
 	TBooking Buchung2(TMoney(50.0), &Konto3, &Konto1, TDate(), TTime(),
 			string("Umbuchung"));
-	TBooking Buchung3(TMoney(39.9), &Konto2, &Konto1, TDate(), TTime(),
-			string("Rechnung 4711"));
+	//TBooking Buchung3(TMoney(39.9), &Konto2, &Konto1, TDate(), TTime(),
+	//		string("Rechnung 4711"));
 // Ausgaben:
 	cout << "Kunde 1:" << endl;
 	Kunde1.print();
