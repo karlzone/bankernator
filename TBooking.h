@@ -10,14 +10,10 @@
 
 #include <string.h>
 
-#include "TAccount.h"
-#include "TCurrentAccount.h"
 #include "TDate.h"
-#include "TFixedDepositAccount.h"
 #include "TMoney.h"
-#include "TSavingsAccount.h"
 #include "TTime.h"
-
+#include "TAccount.h"
 
 using namespace std;
 
@@ -36,16 +32,8 @@ private:
 	string comment;
 	bool printed;
 
-	void init(TMoney, TAccount*, TAccount*, TDate, TTime, string);
-	void addBooking(TAccount*,TAccount*);
-
 public:
 	TBooking(TMoney, TAccount*, TAccount*, TDate, TTime, string);
-	TBooking(TMoney, TCurrentAccount*, TAccount*, TDate, TTime, string);
-	TBooking(TMoney, TSavingsAccount*, TAccount*, TDate, TTime, string);
-	TBooking(TMoney, TFixedDepositAccount*, TAccount*, TDate, TTime, string);
-
-
 	virtual ~TBooking();
 	bool isPrinted();
 	void printBooking(TAccount*, int w);

@@ -5,8 +5,6 @@
  *      Author: karsten weber
  */
 
-//#define DEBUG
-
 #include <iostream>
 //#include <stdio.h>
 
@@ -42,54 +40,25 @@ int main() {
 //hallo blabla
 	TDate Datum1(7, 7, 1977);
 	TDate Datum2(8, 8, 1988);
-
 	TCustomer Bundesdruckerei("Geldquelle", TDate(), "", "", "", "");
 	TCustomer Kunde1("Egon Muster", Datum1, "Mustergasse", "3a", "99889",
 			"Musterstadt");
 	TCustomer Kunde2("Rudolph Rednose", Datum2, "Berliner Str.", "17", "10999",
 			"Berlin");
-<<<<<<< HEAD
-=======
 	cout << "Adresse RR: " << &Kunde2 << endl;
->>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 
 	TBank Bank1("Berliner Bank", 10020000);
-
 	TAccount Geldquelle(&Bundesdruckerei, &Bank1, "0", "0000");
 	TAccount Konto1(&Kunde1, &Bank1, "1234567890", "9999");
-<<<<<<< HEAD
-	TAccount Konto2(&Kunde1, &Bank1, "9876543120", "0101");
-	TAccount Konto3(&Kunde2, &Bank1, "111333555", "1357");
-
-	#ifdef DEBUG
-	cout << endl <<"Booking 1" << endl;
-	#endif
-
-=======
 	TAccount Konto2(&Kunde2, &Bank1, "9876543120", "0101");
 	TAccount Konto3(&Kunde1, &Bank1, "111333555", "1357");
->>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 	TBooking Buchung1(TMoney(150.0), &Konto1, &Geldquelle, TDate(), TTime(),
 			string("Startguthaben"));
-
-	#ifdef DEBUG
-	cout << endl <<"Booking 2" << endl;
-	#endif
-
 	TBooking Buchung2(TMoney(50.0), &Konto3, &Konto1, TDate(), TTime(),
 			string("Umbuchung"));
-
-	#ifdef DEBUG
-	cout << endl << "Booking 3" << endl;
-	#endif
-
 	TBooking Buchung3(TMoney(39.9), &Konto2, &Konto1, TDate(), TTime(),
 			string("Rechnung 4711"));
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e3c5012c156f29f751cc3ed2619bd4c0720a3393
 // Ausgaben:
 	cout << "Kunde 1:" << endl;
 	Kunde1.print();
@@ -97,21 +66,6 @@ int main() {
 	cout << "Kunde 2:" << endl;
 	Kunde2.print();
 	cout << endl;
-	cout << "Bundesdruckerei: " << endl;
-	Bundesdruckerei.print();
-	cout << endl;
-
-	cout << "Konto1" <<endl;
-	Konto1.print();
-	cout << endl;
-	cout << "Konto2" <<endl;
-	Konto2.print();
-	cout << endl;
-	cout << "Konto3" <<endl;
-	Konto3.print();
-	cout << endl;
-
-
 	cout << "Bank 1: " << endl;
 	Bank1.print();
 	cout << endl;

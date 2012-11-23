@@ -25,7 +25,7 @@ class TMoney;
 class TBooking;
 
 class TAccount {
-protected:
+private:
 
 	TBank *bankPtr;
 	TCustomer *customerPtr;
@@ -37,10 +37,12 @@ protected:
 
 	TMoney balance;
 
+	//FIXME
 	TBooking *bookingList[];
 
 public:
-	TAccount(TCustomer*, TBank*, string, string);
+	//TAccount();
+	TAccount(TCustomer *, TBank*, string, string);
 	virtual ~TAccount();
 
 	string getAccountNr();
