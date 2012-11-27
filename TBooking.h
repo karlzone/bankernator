@@ -18,6 +18,11 @@
 using namespace std;
 
 class TAccount;
+
+//class TCurrentAccount;
+//class TSavingsAccount;
+//class TFixedDepositAccount;
+
 class TDate;
 class TTime;
 
@@ -31,13 +36,26 @@ private:
 	TTime time;
 	string comment;
 	bool printed;
-
+	void init(TMoney, TAccount*, TAccount*, TDate, TTime, string);
+	void addBooking(TAccount*);
 public:
+	TBooking(TBooking*);
 	TBooking(TMoney, TAccount*, TAccount*, TDate, TTime, string);
+	//TBooking(TMoney, TCurrentAccount*, TAccount*, TDate, TTime, string);
+	//TBooking(TMoney, TSavingsAccount*, TAccount*, TDate, TTime, string);
+	//TBooking(TMoney, TFixedDepositAccount*, TAccount*, TDate, TTime, string);
+
 	virtual ~TBooking();
 	bool isPrinted();
 	void printBooking(TAccount*, int w);
+
 	//void setPrinted(bool printed);
+	TMoney getAmount();
+	string getComment();
+	TDate getDate();
+	TAccount* getDestinPtr();
+	TAccount* getSourcePtr();
+	TTime getTime();
 };
 
 #endif /* TBOOKING_H_ */

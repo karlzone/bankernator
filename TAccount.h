@@ -25,7 +25,7 @@ class TMoney;
 class TBooking;
 
 class TAccount {
-private:
+protected:
 
 	TBank *bankPtr;
 	TCustomer *customerPtr;
@@ -33,7 +33,7 @@ private:
 	string accountNr;
 	string pin;
 
-	int sumOfBookings;
+	int bookingCounter;
 
 	TMoney balance;
 
@@ -42,7 +42,7 @@ private:
 
 public:
 	//TAccount();
-	TAccount(TCustomer *, TBank*, string, string);
+	TAccount(TCustomer*, TBank*, string, string);
 	virtual ~TAccount();
 
 	string getAccountNr();
@@ -66,8 +66,6 @@ public:
 
 	unsigned getBLZ();
 	void printBalance();
-
-	bool equal_to(TAccount*);
 };
 
 #endif /* TACCOUNT_H_ */

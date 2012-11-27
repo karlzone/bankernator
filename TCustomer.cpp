@@ -11,6 +11,8 @@
 #include "TAccount.h"
 #include "TCustomer.h"
 
+#define DEBUG
+
 using namespace std;
 
 TCustomer::~TCustomer() {
@@ -25,7 +27,7 @@ TCustomer::TCustomer(string name, TDate birthday, string street,
 	this->postcode = postcode;
 	this->city = city;
 	this->birthday = birthday;
-	this->sumOfTAccounts = 0;
+	this->accountCounter = 0;
 //	accountPtr[0] = getAccountPtr();
 }
 
@@ -78,7 +80,7 @@ void TCustomer::setStreetnr(string streetnr) {
 }
 
 TAccount* TCustomer::getAccountPtr() {
-	return accountPtr[sumOfTAccounts];
+	return accountList[accountCounter];
 }
 /*
  void TCustomer::setAccountPtr(TAccount* accountPtr) {
@@ -86,7 +88,7 @@ TAccount* TCustomer::getAccountPtr() {
  }*/
 
 int TCustomer::getSumOfTAccounts() {
-	return sumOfTAccounts;
+	return accountCounter;
 }
 /*
  void TCustomer::setSumOfTAccounts(int sumOfTAccounts) {
@@ -102,11 +104,11 @@ void TCustomer::print() {
 	birthday.print();
 	cout << endl;
 	cout << "Accounts:" << endl;
-	for (int i = 0; i < sumOfTAccounts; i++) {
+	for (int i = 0; i < accountCounter; i++) {
 		cout << "-  Account number:   ";
 		//cout << i << endl;
-		cout << accountPtr[i]->getAccountNr() << "  (Balance:    ";
-		accountPtr[i]->printBalance();
+		cout << accountList[i]->getAccountNr() << "  (Balance:    ";
+		accountList[i]->printBalance();
 		cout << ")" << endl;
 		//accountPtr[i] ->printAccountNr();
 	}
@@ -114,5 +116,17 @@ void TCustomer::print() {
 }
 
 void TCustomer::addAccount(TAccount* accountPtr) {
-	this->accountPtr[sumOfTAccounts++] = accountPtr;
+#ifdef DEBUG
+	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr()->getName() << endl;
+	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr() << endl;
+#endif
+
+	this->accountList[accountCounter] = accountPtr;
+
+#ifdef DEBUG
+	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr()->getName() << endl;
+	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr() << endl;
+#endif
+	accountCounter++;
+
 }

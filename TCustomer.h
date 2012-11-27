@@ -23,8 +23,8 @@ class TCustomer {
 private:
 	string name, street, streetnr, postcode, city;
 	TDate birthday;
-	int sumOfTAccounts;
-	TAccount *accountPtr[MAXACCOUNTS];
+	int accountCounter;
+	TAccount *accountList[MAXACCOUNTS];
 	//TODO array of pointers on TAccount
 
 public:

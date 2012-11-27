@@ -7,6 +7,7 @@
 
 #include "TAccount.h"
 
+#define DEBUG
 
 using namespace std;
 
@@ -20,16 +21,21 @@ TAccount::~TAccount() {
 
 TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 		string pin) {
- 	customerPtr->addAccount(this);
-	bankPtr->addAccount(this);
+
 	this->bankPtr = bankPtr;
 	this->customerPtr = customerPtr;
 	this->accountNr = accountNr;
 	this->pin = pin;
-	cout << "Adresse RR (K TAccount): " << this->customerPtr << endl;
+#ifdef DEBUG
+	cout << "Adresse RR (" << this->customerPtr->getName() << " TAccount): " << this->customerPtr << endl;
+#endif
+ 	customerPtr->addAccount(this);
+	bankPtr->addAccount(this);
+
+
 
 	//TODO the amount of bookings
-	this->sumOfBookings = 0;
+	this->bookingCounter = 0;
 	this->balance = 0;
 }
 
@@ -38,8 +44,21 @@ void TAccount::setBalance(TMoney balance) {
 }
 
 void TAccount::addBooking(TBooking *bookingPtr){
-	cout << "Adr. addbooking Nr. " << sumOfBookings << " Adr. " << (bookingPtr->sourcePtr)->getCustomerPtr() << endl;
-	this->bookingList[sumOfBookings++] = bookingPtr;
+
+	#ifdef DEBUG
+	cout << "TAccount:addBooking:Accountinhaber:" << this->getCustomerPtr()->getName() << endl;
+	cout << "TAccount:addBooking:Accountinhaber:" << this->getCustomerPtr() << endl;
+	cout << "TAccount:addBooking:bookingPtr: " << bookingPtr->getSourcePtr()->getCustomerPtr()->getName() << endl;
+	cout << "TAccount:addBooking:BookingPtr: " << bookingPtr->getSourcePtr()->getCustomerPtr() << endl;
+	#endif
+
+	this->bookingList[bookingCounter] = bookingPtr;
+
+	#ifdef DEBUG
+	cout << "TAccount:addBooking:bookingPtr: bookingList[" << bookingCounter << "]" << bookingList[bookingCounter]->getSourcePtr()->getCustomerPtr()->getName() << endl;
+	cout << "TAccount:addBooking:BookingPtr: bookingList[" << bookingCounter << "]" << bookingList[bookingCounter]->getSourcePtr()->getCustomerPtr() << endl;
+	#endif
+	bookingCounter++;
 }
 
 string TAccount::getAccountNr() {
@@ -67,7 +86,7 @@ void TAccount::setPin(string pin) {
 }
 
 int TAccount::getSumOfBookings() {
-	return sumOfBookings;
+	return bookingCounter;
 }
 
 /* TODO
@@ -78,7 +97,7 @@ int TAccount::getSumOfBookings() {
 void TAccount::print() {
 	customerPtr->print();
 	cout << "Account number:  " << accountNr << endl;
-	cout << "Bookings:        " << sumOfBookings << endl;
+	cout << "Bookings:        " << bookingCounter << endl;
 	cout << "Balance:         " ;
 	printBalance();
 	cout << endl;
@@ -91,7 +110,7 @@ TMoney TAccount::getBalance() {
 void TAccount::printAccountStatement() {
 	//TODO Account statement print with status printed=false
 
-	if(!bookingList[sumOfBookings-1]->isPrinted()){
+	if(!bookingList[bookingCounter-1]->isPrinted()){
 		int w = 20;
 
 		char oldFill = cout.fill();
@@ -101,7 +120,9 @@ void TAccount::printAccountStatement() {
 		cout << "Kontoauszug vom "; TDate().print(); cout << endl;
 		cout << "Kontonr.: " << this->accountNr <<"; BLZ " << this->bankPtr->getBlz() << endl;
 		cout << "Kontoinhaber: " << (this->customerPtr)->getName() << endl;
-
+#ifdef DEBUG
+		cout << "Kontoinhaber: " << (this->customerPtr) << endl;
+#endif
 		cout.width(w); cout << "Datum" << '|';
 		cout.width(w); cout << "Betrag" << '|';
 		cout.width(w); cout << "Absender /Empfaenger" << '|';
@@ -109,7 +130,7 @@ void TAccount::printAccountStatement() {
 
 		printHeadLine(w);
 
-		for (int i = 0; i < sumOfBookings; i++) {
+		for (int i = 0; i < bookingCounter; i++) {
 			if (!bookingList[i]->isPrinted()) {
 				bookingList[i]->printBooking(this, w);
 			}
@@ -132,8 +153,4 @@ void TAccount::printBalance() {
 	cout << balance.getAmount() << " " << balance.getCurrency();
 }
 
-bool TAccount::equal_to(TAccount *accPTr){
-	if( ( this->bankPtr->getBlz() == accPTr->getBLZ() ) && ( this->accountNr == accPTr->getAccountNr() ) )return true;
-	return false;
-}
 
