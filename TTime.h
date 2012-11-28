@@ -11,6 +11,9 @@
 #include <string>
 #include <stdio.h>
 
+#include "bankernatorFktSum.h"
+
+namespace std {
 class TTime {
 private:
 	int hour;
@@ -31,5 +34,5 @@ public:
 	void print();
 
 };
-
+}
 #endif /* TTIME_H_ */

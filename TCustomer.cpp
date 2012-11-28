@@ -11,9 +11,9 @@
 #include "TAccount.h"
 #include "TCustomer.h"
 
-#define DEBUG
+//#define DEBUG
 
-using namespace std;
+namespace std {
 
 TCustomer::~TCustomer() {
 	// TODO Auto-generated destructor stub
@@ -78,16 +78,16 @@ string TCustomer::getStreetnr() {
 void TCustomer::setStreetnr(string streetnr) {
 	this->streetnr = streetnr;
 }
-
-TAccount* TCustomer::getAccountPtr() {
-	return accountList[accountCounter];
-}
+/*
+ TAccount* TCustomer::getAccountPtr() {
+ return accountList[accountCounter];
+ }*/
 /*
  void TCustomer::setAccountPtr(TAccount* accountPtr) {
  this->accountPtr[0] = accountPtr;
  }*/
 
-int TCustomer::getSumOfTAccounts() {
+int TCustomer::getAccountCounter() {
 	return accountCounter;
 }
 /*
@@ -129,4 +129,5 @@ void TCustomer::addAccount(TAccount* accountPtr) {
 #endif
 	accountCounter++;
 
+}
 }

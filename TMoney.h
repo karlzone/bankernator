@@ -11,7 +11,9 @@
 //#include <stdio.h>
 #include <string>
 
-using namespace std;
+#include "bankernatorFktSum.h"
+
+namespace std {
 
 class TMoney {
 private:
@@ -24,6 +26,7 @@ public:
 	TMoney(double);
 	TMoney operator+(TMoney &b);
 	TMoney operator-(TMoney &b);
+	bool operator <(TMoney &b);
 	void setAmount(double x);
 	double getAmount();
 	void setCurrency(string cur);
@@ -32,5 +35,5 @@ public:
 	//TMoney decreaseBalance(double);
 	void print();
 };
-
+}
 #endif /* TMONEY_H_ */

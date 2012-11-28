@@ -11,9 +11,10 @@
 #include <string>
 
 #include "TAccount.h"
+#include "bankernatorFktSum.h"
 //#include "TBooking.h"
 
-using namespace std;
+namespace std {
 
 #define MAXBANKACCOUNTS 100
 
@@ -43,4 +44,5 @@ public:
 	void print();
 
 };
+}
 #endif // TBANK_H_

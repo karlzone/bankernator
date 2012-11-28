@@ -11,9 +11,10 @@
 #include <string>
 
 #include "TAccount.h"
+#include "bankernatorFktSum.h"
 #include "TDate.h"
 
-using namespace std;
+namespace std {
 
 #define MAXACCOUNTS 10
 
@@ -54,12 +55,12 @@ public:
 	TAccount* getAccountPtr();
 //	void setAccountPtr(TAccount* accountPtr);
 
-	int getSumOfTAccounts();
+	int getAccountCounter();
 //	void setSumOfTAccounts(int sumOfTAccounts);
 
 	void addAccount(TAccount * accountPtr);
 
 	void print();
 };
-
+}
 #endif /* TCUSTOMER_H_ */

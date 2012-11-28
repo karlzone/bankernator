@@ -7,14 +7,20 @@
 
 #include "bankernatorFktSum.h"
 
-using namespace std;
+namespace std {
 
-void printHeadLine(int w){
-		char oldFill = cout.fill();
-			cout.fill('-');
-			cout.width(w); cout << "" <<'|';
-			cout.width(w); cout << "" <<'|';
-			cout.width(w); cout << "" <<'|';
-			cout.width(w); cout << "" << endl;;
-			cout.fill(oldFill);
+void printHeadLine(int w) {
+	char oldFill = cout.fill();
+	cout.fill('-');
+	cout.width(w);
+	cout << "" << '|';
+	cout.width(w);
+	cout << "" << '|';
+	cout.width(w);
+	cout << "" << '|';
+	cout.width(w);
+	cout << "" << endl;
+	;
+	cout.fill(oldFill);
+}
 }

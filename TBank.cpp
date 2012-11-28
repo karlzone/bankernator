@@ -6,13 +6,13 @@
 ///////////////////////////////////////////////////////////
 
 #include "TBank.h"
+#include "bankernatorFktSum.h"
 
-#define DEBUG
+//#define DEBUG
 
-using namespace std;
+namespace std {
 
 TAccount *TBank::accountList[MAXBANKACCOUNTS] = { NULL };
-
 
 TBank::TBank(string name, unsigned BLZ) {
 	this->name = name;
@@ -22,18 +22,18 @@ TBank::TBank(string name, unsigned BLZ) {
 }
 
 void TBank::addAccount(TAccount *accountPtr) {
-	#ifdef DEBUG
+#ifdef DEBUG
 	cout << "TBank:addAccount:accountPtr: " << accountPtr->getCustomerPtr()->getName() << endl;
 	cout << "TBank:addAccount:accountPtr: " << accountPtr->getCustomerPtr() << endl;
-	#endif
+#endif
 
 	this->accountList[accountCounter] = accountPtr;
 
-	#ifdef DEBUG
+#ifdef DEBUG
 	cout << "TBank:addAccount:accountPtr: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr()->getName() << endl;
 	cout << "TBank:addAccount:accountPtr: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr() << endl;
 	cout << endl;
-	#endif
+#endif
 	accountCounter++;
 }
 
@@ -68,22 +68,33 @@ void TBank::print() {
 	char oldFill = cout.fill();
 	cout.fill(' ');
 	//Kopfzeile
-	cout.width(w);		cout << "Accountnr." << '|';
-	cout.width(w);		cout << "Customer name" << '|';
-	cout.width(w);		cout << "Amount of bookings" << '|';
-	cout.width(w);		cout << "Balance" << endl;
+	cout.width(w);
+	cout << "Accountnr." << '|';
+	cout.width(w);
+	cout << "Customer name" << '|';
+	cout.width(w);
+	cout << "Amount of bookings" << '|';
+	cout.width(w);
+	cout << "Balance" << endl;
 	//Tabellenkörper
 	for (int i = 0; i < accountCounter; i++) {
-		cout.width(w);		cout << accountList[i]->getAccountNr() << '|';
-		cout.width(w);		cout << "Adr. RR: " << accountList[i]->getCustomerPtr() << "|" << flush;
-		//cout << (accountList[i]->getCustomerPtr())->getName() << '|';
-		cout.width(w);		cout << accountList[i]->getSumOfBookings() << '|';
-
-		cout.width(w);		accountList[i]->getBalance().print();
+		cout.width(w);
+		cout << accountList[i]->getAccountNr() << '|';
+		cout.width(w);
+#ifdef DEBUG
+		cout << "Adr. RR: " << accountList[i]->getCustomerPtr() << "|" << flush;
+#else
+		cout << (accountList[i]->getCustomerPtr())->getName() << '|';
+#endif
+		cout.width(w);
+		cout << accountList[i]->getBookingCounter() << '|';
+		cout.width(w);
+		accountList[i]->getBalance().print();
 		cout << endl;
 	}
 	cout.fill(oldFill);
 }
 TBank::~TBank() {
 
+}
 }

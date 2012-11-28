@@ -7,7 +7,8 @@
 
 #ifndef TDATE_H_
 #define TDATE_H_
-
+#include "bankernatorFktSum.h"
+namespace std {
 class TDate {
 private:
 	int day;
@@ -27,4 +28,5 @@ public:
 	int getYear() const;
 	void setYear(int year);
 };
+}
 #endif /* TDATE_H_ */

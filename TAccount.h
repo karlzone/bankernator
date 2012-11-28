@@ -17,7 +17,9 @@
 #include "TMoney.h"
 #include "TBooking.h"
 
-using namespace std;
+namespace std {
+
+#define MAXBOOKINGS 1000
 
 class TBank;
 class TCustomer;
@@ -38,7 +40,7 @@ protected:
 	TMoney balance;
 
 	//FIXME
-	TBooking *bookingList[];
+	TBooking *bookingList[MAXBOOKINGS];
 
 public:
 	//TAccount();
@@ -54,7 +56,7 @@ public:
 	string getPin();
 	void setPin(string pin);
 
-	int getSumOfBookings();
+	int getBookingCounter();
 	void setSumOfBookings(int sumOfBookings);
 
 	void print();
@@ -67,5 +69,5 @@ public:
 	unsigned getBLZ();
 	void printBalance();
 };
-
+}
 #endif /* TACCOUNT_H_ */

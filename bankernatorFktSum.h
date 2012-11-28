@@ -9,11 +9,12 @@
 #define BANKERNATORFKTSUM_H_
 
 #include <iostream>
+//#define DEBUG
 
-using namespace std;
-
+namespace std {
 
 void printHeadLine(int w);
 
-
+}
 #endif /* BANKERNATORFKTSUM_H_ */
+

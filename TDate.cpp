@@ -10,7 +10,7 @@
 
 #include "TDate.h"
 
-using namespace std;
+namespace std {
 
 TDate::TDate() {
 	time_t Zeitstempel;
@@ -35,9 +35,12 @@ void TDate::print() {
 	char oldFill = cout.fill();
 	cout.fill('0');
 
-	cout.width(2);	cout << day << '.';
-	cout.width(2);	cout << month << '.';
-	cout.width(4);	cout << year;
+	cout.width(2);
+	cout << day << '.';
+	cout.width(2);
+	cout << month << '.';
+	cout.width(4);
+	cout << year;
 
 	cout.fill(oldFill);
 	cout.flush();
@@ -68,4 +71,5 @@ int TDate::getYear() const {
 void TDate::setYear(int year) {
 	//TODO set limits for year (0-9999).
 	this->year = year;
+}
 }

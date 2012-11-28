@@ -10,12 +10,14 @@
 
 #include <string.h>
 
+#include "bankernatorFktSum.h"
 #include "TDate.h"
 #include "TMoney.h"
 #include "TTime.h"
 #include "TAccount.h"
+//#include "TCurrentAccount.h"
 
-using namespace std;
+namespace std {
 
 class TAccount;
 
@@ -47,7 +49,7 @@ public:
 
 	virtual ~TBooking();
 	bool isPrinted();
-	void printBooking(TAccount*, int w);
+	void printBooking(int w);
 
 	//void setPrinted(bool printed);
 	TMoney getAmount();
@@ -57,5 +59,5 @@ public:
 	TAccount* getSourcePtr();
 	TTime getTime();
 };
-
+}
 #endif /* TBOOKING_H_ */

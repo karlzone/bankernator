@@ -9,7 +9,7 @@
 #include <time.h>
 #include <iostream>
 
-using namespace std;
+namespace std {
 
 TTime::TTime() {
 	time_t Zeitstempel;
@@ -58,9 +58,12 @@ void TTime::print() {
 	char oldFill = cout.fill();
 	cout.fill('0');
 
-	cout.width(2);	cout << hour << ':';
-	cout.width(2);	cout << minute << ':';
-	cout.width(2);	cout << second;
+	cout.width(2);
+	cout << hour << ':';
+	cout.width(2);
+	cout << minute << ':';
+	cout.width(2);
+	cout << second;
 
 	cout.fill(oldFill);
 	cout.flush();
@@ -68,5 +71,6 @@ void TTime::print() {
 
 TTime::~TTime() {
 	// TODO Auto-generated destructor stub
+}
 }
 

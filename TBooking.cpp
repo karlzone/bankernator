@@ -9,13 +9,14 @@
 
 #include "TBooking.h"
 
-#define DEBUG
-using namespace std;
+//#define DEBUG
+namespace std {
 
-TBooking::TBooking(TBooking *tbp){
-	init((tbp->getAmount()), (tbp->getSourcePtr()), (tbp->getDestinPtr()), (tbp->getDate()), (tbp->getTime()), (tbp->getComment()));
+TBooking::TBooking(TBooking *tbp) {
+	init((tbp->getAmount()), (tbp->getSourcePtr()), (tbp->getDestinPtr()),
+			(tbp->getDate()), (tbp->getTime()), (tbp->getComment()));
 	addBooking(this->sourcePtr);
-//	sourcePtr->setBalance((sourcePtr->getBalance())+amount);
+	sourcePtr->setBalance((sourcePtr->getBalance()) + amount);
 }
 
 TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
@@ -23,18 +24,20 @@ TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 
 	init(amount, destinPtr, sourcePtr, date, time, comment);
 	addBooking(sourcePtr);
-//	sourcePtr->setBalance((sourcePtr->getBalance())-amount);
+	sourcePtr->setBalance((sourcePtr->getBalance()) - amount);
 	new TBooking(this);
 }
 
 /*
-TBooking::TBooking(TMoney amount, TCurrentAccount *sourcePtr, TAccount *destinPtr, TDate date, TTime time, string comment){
-	if(sourcePtr->getBalance()-amount < sourcePtr->getDisposit()){
-		cerr << "Dispo nicht gedeckt" << endl;
-	}else {
-		init(amount,sourcePtr,destinPtr,date,time,comment);
+ TBooking::TBooking(TMoney amount, TCurrentAccount *sourcePtr,
+		TAccount *destinPtr, TDate date, TTime time, string comment) {
+	if (sourcePtr->getBalance() - amount < sourcePtr->getDispo()) {
+		cout << endl << endl << "Dispo nicht gedeckt" << endl << endl;
+	} else {
+		init(amount, sourcePtr, destinPtr, date, time, comment);
 		addBooking(sourcePtr);
-//		sourcePtr->setBalance((sourcePtr->getBalance())-amount);
+		cout << endl << endl << "gebucht" << endl << endl;
+		//		sourcePtr->setBalance((sourcePtr->getBalance())-amount);
 		new TBooking(this);
 	}
 }
@@ -68,24 +71,30 @@ TTime TBooking::getTime() {
 	return time;
 }
 
-void TBooking::printBooking(TAccount * accPTr, int w) {
+void TBooking::printBooking(int w) {
 	//FIXME
 	//cout << date << "|" << sourcePtr->customerPtr->getName() << "|" << comment << endl;
 #ifndef DEBUG
 	this->printed = true;
 #endif
-	cout.width(w-10); cout << ""; 	this->date.print(); 	cout << '|';
-	cout.width(w-4);
+	cout.width(w - 10);
+	cout << "";
+	this->date.print();
+	cout << '|';
+	cout.width(w - 4);
 	cout.precision(2);
 	cout << fixed << this->amount.getAmount() << " ";
-	cout.width(w-20);
+	cout.width(w - 20);
 	cout << this->amount.getCurrency() << '|';
 	cout << flush;
-//	cout.width(w); cout << this->destinPtr->getCustomerPtr()->getName() << '|';
 #ifdef DEBUG
 	cout.width(w); cout << this->destinPtr->getCustomerPtr() << '|';
+#else
+	cout.width(w);
+	cout << this->destinPtr->getCustomerPtr()->getName() << '|';
 #endif
-	cout.width(w); cout << this->comment << endl;
+	cout.width(w);
+	cout << this->comment << endl;
 }
 
 /*void TBooking::setPrinted(bool printed) {
@@ -93,7 +102,7 @@ void TBooking::printBooking(TAccount * accPTr, int w) {
  }*/
 
 void TBooking::init(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
-		TDate date, TTime time, string comment){
+		TDate date, TTime time, string comment) {
 	this->amount = amount;
 	this->sourcePtr = sourcePtr;
 	this->destinPtr = destinPtr;
@@ -105,29 +114,28 @@ void TBooking::init(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 	string bo = "Booking atributts:";
 	//cout <<  bo << "amount: "; this->amount.print(); cout << endl;
 
-	cout << endl <<  bo << "sourcPtr: " << this->sourcePtr->getCustomerPtr()->getName(); cout << endl;
-	cout <<  bo << "Add:sourcPtr: " << this->sourcePtr->getCustomerPtr(); cout << endl;
-	cout <<  bo << "destinPtr: " << this->destinPtr->getCustomerPtr()->getName(); cout << endl;
-	cout <<  bo << "Add:destinPtr: " << this->destinPtr->getCustomerPtr(); cout << endl;
+	cout << endl << bo << "sourcPtr: " << this->sourcePtr->getCustomerPtr()->getName(); cout << endl;
+	cout << bo << "Add:sourcPtr: " << this->sourcePtr->getCustomerPtr(); cout << endl;
+	cout << bo << "destinPtr: " << this->destinPtr->getCustomerPtr()->getName(); cout << endl;
+	cout << bo << "Add:destinPtr: " << this->destinPtr->getCustomerPtr(); cout << endl;
 	/*
-	cout <<  bo << "date: "; this->date.print() ; cout << endl;
-	cout <<  bo << "time: "; this->time.print(); cout << endl;
-	cout <<  bo << "comment: " << this->comment; cout << endl;
-	cout <<  bo << "printed: " << this->printed; cout << endl;
-	*/
+	 cout <<  bo << "date: "; this->date.print() ; cout << endl;
+	 cout <<  bo << "time: "; this->time.print(); cout << endl;
+	 cout <<  bo << "comment: " << this->comment; cout << endl;
+	 cout <<  bo << "printed: " << this->printed; cout << endl;
+	 */
 #endif
 }
 
-void TBooking::addBooking(TAccount *sourcePtr){
+void TBooking::addBooking(TAccount *sourcePtr) {
 	sourcePtr->addBooking(this);
-	#ifdef DEBUG
+#ifdef DEBUG
 	cout << "TBooking:addBooking:sourcePtr: " << sourcePtr->getCustomerPtr()->getName() << endl;
 	cout << "TBooking:addBooking:sourcePtr: " << sourcePtr->getCustomerPtr() << endl;
-	#endif
+#endif
 }
-
-
 
 TBooking::~TBooking() {
 // TODO Auto-generated destructor stub
+}
 }

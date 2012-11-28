@@ -10,7 +10,7 @@
 
 #include "TMoney.h"
 
-using namespace std;
+namespace std {
 
 TMoney::TMoney() {
 	// TODO Auto-generated constructor stub
@@ -43,16 +43,18 @@ string TMoney::getCurrency() {
 	return currency;
 }
 
-TMoney TMoney::operator+(TMoney &b){
-	return TMoney(this->amount+b.getAmount());
+TMoney TMoney::operator+(TMoney &b) {
+	return TMoney(this->amount + b.getAmount());
 	//return TMoney(this.amount+b.amount);
 }
 
-TMoney TMoney::operator-(TMoney &b){
-	return TMoney(this->amount-b.getAmount());
+TMoney TMoney::operator-(TMoney &b) {
+	return TMoney(this->amount - b.getAmount());
 }
 
-
+bool TMoney::operator <(TMoney &b) {
+	return (this->amount < b.getAmount());
+}
 
 void TMoney::print() {
 	ios::fmtflags oldCout;
@@ -65,4 +67,5 @@ void TMoney::print() {
 	cout.flush();
 
 	cout.flags(oldCout);
+}
 }

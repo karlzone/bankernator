@@ -8,38 +8,19 @@
 #include <iostream>
 //#include <stdio.h>
 
+#include "bankernatorFktSum.h"
 #include "TDate.h"
 #include "TMoney.h"
 #include "TCustomer.h"
 #include "TAccount.h"
 #include "TBooking.h"
 
-#define DEBUG
+//#define DEBUG
 
 using namespace std;
 
 int main() {
 	char ch[1];
-	/*TDate Datum(7, 7, 1977);
-	 TMoney Betrag1(150.0);
-	 TCustomer Kunde1("Egon Muster", Datum, "Mustergasse", "3a", "99889", "Musterstadt");
-	 TBank Bank1("ErsteBank",80090100);
-
-	 TAccount Konto1(&Bank1, &Kunde1, "1234567890", "9999");
-
-	 cout << "Betrag 1: " << endl; Betrag1.print();cout << endl << endl;
-	 cout << "Kunde 1: " << endl; Kunde1.print(); cout << endl << endl;
-	 cout << "Konto 1; " << endl; Konto1.print(); cout << endl << endl;
-
-	 TAccount Konto2(&Bank1, &Kunde1, "9876543210", "0101");
-
-	 cout << "Kunde 1: " << endl; Kunde1.print(); cout << endl << endl;
-	 cout << "Konto 2; " << endl; Konto2.print(); cout << endl << endl;
-
-
-	 cout << "Bank1: " << endl; Bank1.print();*/
-
-//hallo blabla
 	TDate Datum1(7, 7, 1977);
 	TDate Datum2(8, 8, 1988);
 	TCustomer Bundesdruckerei("Geldquelle", TDate(), "", "", "", "");
@@ -97,7 +78,7 @@ int main() {
 
 	cout << "Konto1->Konto3"<<endl;
 #endif
-	TBooking Buchung2(TMoney(50.0), &Konto3, &Konto1, TDate(), TTime(),
+	TBooking Buchung2(TMoney(50.0), &Konto2, &Konto1, TDate(), TTime(),
 			string("Umbuchung"));
 #ifdef DEBUG
 	cout << endl;
@@ -109,7 +90,7 @@ int main() {
 	cout << endl;
 	cout << "Konto1->Konto2"<<endl;
 #endif
-	TBooking Buchung3(TMoney(39.9), &Konto2, &Konto1, TDate(), TTime(),
+	TBooking Buchung3(TMoney(39.9), &Konto3, &Konto1, TDate(), TTime(),
 			string("Rechnung 4711"));
 #ifdef DEBUG
 	cout << endl;
