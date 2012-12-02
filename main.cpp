@@ -65,7 +65,7 @@ int main() {
 	cout << "Erstellen der Buchungen" << endl;
 	cout << "Geldquelle->Konto1" << endl;
 #endif
-	TBooking Buchung1(TMoney(150.0), &Konto1, &Geldquelle, TDate(), TTime(),
+	TBooking Buchung1(TMoney(150.0), &Geldquelle, &Konto1, TDate(), TTime(),
 			string("Startguthaben"));
 #ifdef DEBUG
 	cout << endl;
@@ -78,7 +78,7 @@ int main() {
 
 	cout << "Konto1->Konto3"<<endl;
 #endif
-	TBooking Buchung2(TMoney(50.0), &Konto2, &Konto1, TDate(), TTime(),
+	TBooking Buchung2(TMoney(50.0), &Konto1, &Konto3, TDate(), TTime(),
 			string("Umbuchung"));
 #ifdef DEBUG
 	cout << endl;
@@ -90,7 +90,7 @@ int main() {
 	cout << endl;
 	cout << "Konto1->Konto2"<<endl;
 #endif
-	TBooking Buchung3(TMoney(39.9), &Konto3, &Konto1, TDate(), TTime(),
+	TBooking Buchung3(TMoney(39.9), &Konto1, &Konto2, TDate(), TTime(),
 			string("Rechnung 4711"));
 #ifdef DEBUG
 	cout << endl;

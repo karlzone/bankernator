@@ -15,16 +15,10 @@
 #include "TMoney.h"
 #include "TTime.h"
 #include "TAccount.h"
-//#include "TCurrentAccount.h"
 
 namespace std {
 
 class TAccount;
-
-//class TCurrentAccount;
-//class TSavingsAccount;
-//class TFixedDepositAccount;
-
 class TDate;
 class TTime;
 
@@ -43,9 +37,6 @@ private:
 public:
 	TBooking(TBooking*);
 	TBooking(TMoney, TAccount*, TAccount*, TDate, TTime, string);
-	//TBooking(TMoney, TCurrentAccount*, TAccount*, TDate, TTime, string);
-	//TBooking(TMoney, TSavingsAccount*, TAccount*, TDate, TTime, string);
-	//TBooking(TMoney, TFixedDepositAccount*, TAccount*, TDate, TTime, string);
 
 	virtual ~TBooking();
 	bool isPrinted();

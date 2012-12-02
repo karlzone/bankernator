@@ -19,29 +19,42 @@ TBooking::TBooking(TBooking *tbp) {
 	sourcePtr->setBalance((sourcePtr->getBalance()) + amount);
 }
 
-TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
+TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
 		TDate date, TTime time, string comment) {
-
-	init(amount, destinPtr, sourcePtr, date, time, comment);
-	addBooking(sourcePtr);
-	sourcePtr->setBalance((sourcePtr->getBalance()) - amount);
-	new TBooking(this);
-}
-
-/*
- TBooking::TBooking(TMoney amount, TCurrentAccount *sourcePtr,
-		TAccount *destinPtr, TDate date, TTime time, string comment) {
-	if (sourcePtr->getBalance() - amount < sourcePtr->getDispo()) {
-		cout << endl << endl << "Dispo nicht gedeckt" << endl << endl;
-	} else {
-		init(amount, sourcePtr, destinPtr, date, time, comment);
-		addBooking(sourcePtr);
-		cout << endl << endl << "gebucht" << endl << endl;
-		//		sourcePtr->setBalance((sourcePtr->getBalance())-amount);
-		new TBooking(this);
+	switch (sourcePtr->getAtyp()) {
+		case 0:
+			init(amount, destinPtr, sourcePtr, date, time, comment);
+			addBooking(sourcePtr);
+			sourcePtr->setBalance((sourcePtr->getBalance()) - amount);
+			new TBooking(this);
+			break;
+		case 1:
+			//FIXME abfrage ob dispo ausreicht
+			if (false) {
+					cout << endl << endl << "Dispo nicht gedeckt" << endl << endl;
+				} else {
+					init(amount, sourcePtr, destinPtr, date, time, comment);
+					addBooking(sourcePtr);
+					cout << endl << endl << "gebucht" << endl << endl;
+					sourcePtr->setBalance((sourcePtr->getBalance())-amount);
+					new TBooking(this);
+				}
+			break;
+		case 2:
+			//FIXME passende operationen bei einem TSavingsAccount
+			init(amount, destinPtr, sourcePtr, date, time, comment);
+			addBooking(sourcePtr);
+			sourcePtr->setBalance((sourcePtr->getBalance()) - amount);
+			new TBooking(this);
+			break;
+		case 3:
+			//FIXME TFixedDepositAccount fehlt noch
+		break;
+		default:
+			break;
 	}
+
 }
-*/
 
 bool TBooking::isPrinted() {
 	return printed;
@@ -101,7 +114,7 @@ void TBooking::printBooking(int w) {
  this->printed = printed;
  }*/
 
-void TBooking::init(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
+void TBooking::init(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
 		TDate date, TTime time, string comment) {
 	this->amount = amount;
 	this->sourcePtr = sourcePtr;

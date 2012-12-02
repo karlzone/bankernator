@@ -39,7 +39,7 @@ protected:
 
 	TMoney balance;
 
-	//FIXME
+	int Atyp;
 	TBooking *bookingList[MAXBOOKINGS];
 
 public:
@@ -68,6 +68,8 @@ public:
 
 	unsigned getBLZ();
 	void printBalance();
+	virtual TMoney* getDispo();
+	int getAtyp() const;
 };
 }
 #endif /* TACCOUNT_H_ */

@@ -26,10 +26,9 @@ TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 #endif
 	customerPtr->addAccount(this);
 	bankPtr->addAccount(this);
-
-	//TODO the amount of bookings
 	this->bookingCounter = 0;
 	this->balance = 0;
+	this->Atyp = 0;
 }
 
 void TAccount::setBalance(TMoney balance) {
@@ -152,6 +151,14 @@ unsigned TAccount::getBLZ() {
 
 void TAccount::printBalance() {
 	cout << balance.getAmount() << " " << balance.getCurrency();
+}
+
+int TAccount::getAtyp() const {
+	return Atyp;
+}
+
+TMoney* TAccount::getDispo() {
+	return new TMoney();
 }
 }
 
