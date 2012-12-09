@@ -14,7 +14,7 @@ namespace std {
 
 class TCurrentAccount: public virtual std::TAccount {
 protected:
-	TMoney* dispo;
+
 public:
 	TCurrentAccount(TCustomer*, TBank*, string, string, TMoney*);
 	virtual ~TCurrentAccount();

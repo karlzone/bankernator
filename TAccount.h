@@ -38,6 +38,7 @@ protected:
 	int bookingCounter;
 
 	TMoney balance;
+	TMoney* dispo;
 
 	int Atyp;
 	TBooking *bookingList[MAXBOOKINGS];
