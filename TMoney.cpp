@@ -52,7 +52,7 @@ TMoney TMoney::operator-(TMoney &b) {
 	return TMoney(this->amount - b.getAmount());
 }
 
-bool TMoney::operator <(TMoney &b) {
+bool TMoney::operator<(TMoney &b) {
 	return (this->amount < b.getAmount());
 }
 

@@ -14,6 +14,10 @@ namespace std {
 
 TAccount *TBank::accountList[MAXBANKACCOUNTS] = { NULL };
 
+TBank::~TBank() {
+	cout << "TAccount Konto: " << this->name << " wird vernichtet!" << endl;
+}
+
 TBank::TBank(string name, unsigned BLZ) {
 	this->name = name;
 	this->BLZ = BLZ;
@@ -35,6 +39,10 @@ void TBank::addAccount(TAccount *accountPtr) {
 	cout << endl;
 #endif
 	accountCounter++;
+}
+
+TAccount* TBank::getAccount(int i) {
+	return this->accountList[i];
 }
 
 unsigned TBank::getBlz() {
@@ -94,7 +102,5 @@ void TBank::print() {
 	}
 	cout.fill(oldFill);
 }
-TBank::~TBank() {
 
-}
-}
+} /* namespace std */

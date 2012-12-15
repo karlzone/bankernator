@@ -12,13 +12,17 @@
 
 namespace std {
 
-class TCurrentAccount: public virtual std::TAccount {
+class TCurrentAccount: public virtual TAccount {
 protected:
+	TMoney Disposit;
 
 public:
-	TCurrentAccount(TCustomer*, TBank*, string, string, TMoney*);
+	TCurrentAccount(TCustomer*, TBank*, string, string, TMoney);
 	virtual ~TCurrentAccount();
-	TMoney* getDispo();
+	TMoney getDisposit();
+
+	void printAccountStatement();
+	int getAtyp();
 };
 
 } /* namespace std */

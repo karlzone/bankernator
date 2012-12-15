@@ -38,9 +38,8 @@ protected:
 	int bookingCounter;
 
 	TMoney balance;
-	TMoney* dispo;
+	//TMoney* dispo;
 
-	int Atyp;
 	TBooking *bookingList[MAXBOOKINGS];
 
 public:
@@ -58,7 +57,7 @@ public:
 	void setPin(string pin);
 
 	int getBookingCounter();
-	void setSumOfBookings(int sumOfBookings);
+	//void setSumOfBookings(int sumOfBookings);
 
 	void print();
 
@@ -69,7 +68,7 @@ public:
 
 	unsigned getBLZ();
 	void printBalance();
-	virtual TMoney* getDispo();
+	//virtual TMoney* getDispo();
 	int getAtyp() const;
 };
 }

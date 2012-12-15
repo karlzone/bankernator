@@ -20,6 +20,8 @@ public:
 	virtual ~TSavingsAccount();
 	double* getPtr();
 	void setPtr(double* ptr);
+
+	int getAtyp();
 };
 
 } /* namespace std */

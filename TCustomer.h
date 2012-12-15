@@ -26,7 +26,6 @@ private:
 	TDate birthday;
 	int accountCounter;
 	TAccount *accountList[MAXACCOUNTS];
-	//TODO array of pointers on TAccount
 
 public:
 	TCustomer();

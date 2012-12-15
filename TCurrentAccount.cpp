@@ -9,19 +9,27 @@
 
 namespace std {
 
-TCurrentAccount::TCurrentAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
-		string pin, TMoney*dispo):TAccount(customerPtr,bankPtr,accountNr,pin) {
-	this->dispo = dispo;
-	this->Atyp = 1;
-
-}
-
-TMoney* TCurrentAccount::getDispo() {
-	return this->dispo;
-}
-
 TCurrentAccount::~TCurrentAccount() {
-	// TODO Auto-generated destructor stub
+	cout << "TCurrentAccount Konto: " << this->accountNr << "wird vernichtet!" << endl;
+}
+
+TCurrentAccount::TCurrentAccount(TCustomer *customerPtr, TBank *bankPtr,
+		string accountNr, string pin, TMoney dispo) : TAccount (customerPtr, bankPtr, accountNr, pin) {
+
+	this->Disposit = dispo;
+
+}
+
+TMoney TCurrentAccount::getDisposit() {
+	return this->Disposit;
+}
+
+void TCurrentAccount::printAccountStatement() {
+	TAccount::printAccountStatement();
+	cout << "max. Dispo" << Disposit.getAmount() << endl;
+}
+int TCurrentAccount::getAtyp() {
+	return 1; //1 = TCurrentAccount
 }
 
 } /* namespace std */

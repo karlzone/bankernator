@@ -35,6 +35,8 @@ public:
 
 	void addAccount(TAccount*);
 
+	TAccount* getAccount(int);
+
 	unsigned getBlz();
 	void setBlz(unsigned blz);
 

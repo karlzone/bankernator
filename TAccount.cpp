@@ -12,7 +12,7 @@
 namespace std {
 
 TAccount::~TAccount() {
-	// TODO Auto-generated destructor stub
+	cout << "TAccount Konto: " << this->accountNr << "wird vernichtet!" << endl;
 }
 
 TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
@@ -28,8 +28,8 @@ TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 	bankPtr->addAccount(this);
 	this->bookingCounter = 0;
 	this->balance = 0;
-	this->Atyp = 0;
-	this->dispo = new TMoney();
+	//this->Atyp = 0;
+	//this->dispo = new TMoney();
 }
 
 void TAccount::setBalance(TMoney balance) {
@@ -103,6 +103,7 @@ TMoney TAccount::getBalance() {
 void TAccount::printAccountStatement() {
 	//TODO Account statement print with status printed=false
 	if (bookingCounter == 0)
+		cout << "No bookings..." << endl;
 		return;
 	if (!bookingList[bookingCounter - 1]->isPrinted()) {
 		int w = 20;
@@ -155,11 +156,11 @@ void TAccount::printBalance() {
 }
 
 int TAccount::getAtyp() const {
-	return Atyp;
+	return 0; // 0 = TAccount
 }
 
-TMoney* TAccount::getDispo() {
+/*TMoney* TAccount::getDispo() {
 	return dispo;
-}
-}
+}*/
+} /* namespace std */
 

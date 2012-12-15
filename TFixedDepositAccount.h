@@ -16,7 +16,7 @@ namespace std {
 class TFixedDepositAccount: public std::TCurrentAccount,
 		public std::TSavingsAccount {
 public:
-	TFixedDepositAccount(TCustomer*, TBank*, string, string, TMoney*,double*);
+	//TFixedDepositAccount(TCustomer*, TBank*, string, string, TMoney*,double*);
 	virtual ~TFixedDepositAccount();
 };
 
