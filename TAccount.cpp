@@ -12,7 +12,7 @@
 namespace std {
 
 TAccount::~TAccount() {
-	cout << "TAccount Konto: " << this->accountNr << "wird vernichtet!" << endl;
+	cout << "TAccount:              " << this->accountNr << "  deleted" << endl;
 }
 
 TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
@@ -101,7 +101,6 @@ TMoney TAccount::getBalance() {
 }
 
 void TAccount::printAccountStatement() {
-	//TODO Account statement print with status printed=false
 	if (bookingCounter == 0)
 		cout << "No bookings..." << endl;
 		return;
@@ -110,8 +109,8 @@ void TAccount::printAccountStatement() {
 
 		char oldFill = cout.fill();
 		cout.fill(' ');
-		//Kopfzeile
 
+		//Kopfzeile
 		cout << "Kontoauszug vom ";
 		TDate().print();
 		cout << endl;

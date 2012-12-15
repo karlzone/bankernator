@@ -61,7 +61,7 @@ public:
 
 	void print();
 
-	void printAccountStatement();
+	virtual void printAccountStatement();
 	TMoney getBalance();
 	void addBooking(TBooking*);
 	void setBalance(TMoney balance);

@@ -63,7 +63,7 @@ void TMoney::print() {
 	cout.flags(newCout);
 
 	cout.precision(2);
-	cout << fixed << amount << currency;
+	cout << fixed << amount << " "<< currency;
 	cout.flush();
 
 	cout.flags(oldCout);

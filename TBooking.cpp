@@ -29,8 +29,9 @@ TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
 			new TBooking(this);
 			break;
 		case 1:
-			//FIXME abfrage ob dispo ausreicht
-			if (false) {
+		case 3:
+			//FIXME in der Abfrage müsste noch Disposit eingebaut werden. Ist dafür ein neuer Konstruktor nötig?
+			if ((sourcePtr->getBalance().getAmount()) - (amount.getAmount()) < 0) {
 					cout << endl << endl << "Dispo nicht gedeckt" << endl << endl;
 				} else {
 					init(amount, sourcePtr, destinPtr, date, time, comment);
@@ -47,9 +48,9 @@ TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
 			sourcePtr->setBalance((sourcePtr->getBalance()) - amount);
 			new TBooking(this);
 			break;
-		case 3:
+		//case 3:
 			//FIXME TFixedDepositAccount fehlt noch
-		break;
+			//break;
 		default:
 			break;
 	}

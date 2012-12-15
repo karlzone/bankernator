@@ -13,11 +13,14 @@
 
 namespace std {
 
-class TFixedDepositAccount: public std::TCurrentAccount,
+class TFixedDepositAccount: virtual public std::TCurrentAccount,
 		public std::TSavingsAccount {
 public:
-	//TFixedDepositAccount(TCustomer*, TBank*, string, string, TMoney*,double*);
+	TFixedDepositAccount(TCustomer*, TBank*, string, string, TMoney,double);
 	virtual ~TFixedDepositAccount();
+
+	int getAtyp();
+	virtual void printAccountStatement();
 };
 
 } /* namespace std */

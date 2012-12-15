@@ -14,14 +14,14 @@ namespace std {
 
 class TCurrentAccount: public virtual TAccount {
 protected:
-	TMoney Disposit;
+	TMoney* Disposit;
 
 public:
 	TCurrentAccount(TCustomer*, TBank*, string, string, TMoney);
 	virtual ~TCurrentAccount();
-	TMoney getDisposit();
+	TMoney* getDisposit();
 
-	void printAccountStatement();
+	virtual void printAccountStatement();
 	int getAtyp();
 };
 

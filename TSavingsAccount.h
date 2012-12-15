@@ -14,14 +14,15 @@ namespace std {
 
 class TSavingsAccount: public virtual std::TAccount {
 protected:
-	double * dPtr;
+	double* interestRate;
 public:
-	TSavingsAccount(TCustomer*, TBank*, string, string, double*);
+	TSavingsAccount(TCustomer*, TBank*, string, string, double);
 	virtual ~TSavingsAccount();
-	double* getPtr();
-	void setPtr(double* ptr);
+	double* getInterestRate();
+	void setInterestRatePtr(double* interestRate);
 
 	int getAtyp();
+	virtual void printAccountStatement();
 };
 
 } /* namespace std */

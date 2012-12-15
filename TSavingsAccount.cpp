@@ -10,24 +10,31 @@
 namespace std {
 
 TSavingsAccount::~TSavingsAccount() {
-	cout << "TAccount Konto: " << this->accountNr << "wird vernichtet!" << endl;
+	cout << "TSavingsAccount:       " << this->accountNr << "  deleted" << endl;
 }
 
 TSavingsAccount::TSavingsAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
-		string pin, double * dPtr):TAccount(customerPtr,bankPtr,accountNr,pin) {
-	this->dPtr = dPtr;
+		string pin, double interestRate):TAccount(customerPtr,bankPtr,accountNr,pin) {
+	this->interestRate = new double(1.5);
 }
 
-double* TSavingsAccount::getPtr() {
-	return dPtr;
+double* TSavingsAccount::getInterestRate() {
+	return interestRate;
 }
 
-void TSavingsAccount::setPtr(double* ptr) {
-	dPtr = ptr;
+void TSavingsAccount::setInterestRatePtr(double* interestRate) {
+	this->interestRate = interestRate;
 }
 
 int TSavingsAccount::getAtyp() {
 	return 2; // 2 = TSavingsAccount
+}
+
+void TSavingsAccount::printAccountStatement() {
+	TAccount::printAccountStatement();
+	cout << "Interest rate: ";
+	cout.precision(2);
+	cout << fixed << *(this->interestRate) <<  " %" << endl;
 }
 
 } /* namespace std */

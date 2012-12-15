@@ -9,14 +9,27 @@
 
 namespace std {
 
-/*FixedDepositAccount::TFixedDepositAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
-		string pin, TMoney*dispo, double *dPtr): TAccount(customerPtr,bankPtr,accountNr,pin), TCurrentAccount(customerPtr,bankPtr,accountNr,pin,dispo),
-				TSavingsAccount(customerPtr,bankPtr,accountNr,pin,dPtr){
-	this->Atyp = 3;
-}*/
-
 TFixedDepositAccount::~TFixedDepositAccount() {
-	// TODO Auto-generated destructor stub
+	cout << "TFixedDepositAccount:  " << this->accountNr << "  deleted" << endl;
+}
+
+TFixedDepositAccount::TFixedDepositAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
+		string pin, TMoney Disposit, double interestRate): TAccount(customerPtr,bankPtr,accountNr,pin), TCurrentAccount(customerPtr,bankPtr,accountNr,pin,Disposit),
+				TSavingsAccount(customerPtr,bankPtr,accountNr,pin, interestRate){
+
+}
+
+int TFixedDepositAccount::getAtyp() {
+	return 3; // 3 = TFixedDepositAccount
+}
+
+void TFixedDepositAccount::printAccountStatement() {
+	TAccount::printAccountStatement();
+	cout << "max. Dispo: ";
+	this->Disposit->print();
+	cout << endl << "Interest rate: ";
+	cout.precision(2);
+	cout << fixed << *(this->interestRate) <<  " %" << endl;
 }
 
 } /* namespace std */

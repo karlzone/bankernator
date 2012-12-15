@@ -10,24 +10,27 @@
 namespace std {
 
 TCurrentAccount::~TCurrentAccount() {
-	cout << "TCurrentAccount Konto: " << this->accountNr << "wird vernichtet!" << endl;
+	cout << "TCurrentAccount:       " << this->accountNr << "  deleted" << endl;
 }
 
 TCurrentAccount::TCurrentAccount(TCustomer *customerPtr, TBank *bankPtr,
 		string accountNr, string pin, TMoney dispo) : TAccount (customerPtr, bankPtr, accountNr, pin) {
 
-	this->Disposit = dispo;
+	this->Disposit = new TMoney(dispo.getAmount());
 
 }
 
-TMoney TCurrentAccount::getDisposit() {
+TMoney* TCurrentAccount::getDisposit() {
 	return this->Disposit;
 }
 
 void TCurrentAccount::printAccountStatement() {
 	TAccount::printAccountStatement();
-	cout << "max. Dispo" << Disposit.getAmount() << endl;
+	cout << "max. Dispo: ";
+	this->Disposit->print();
+	cout << endl;
 }
+
 int TCurrentAccount::getAtyp() {
 	return 1; //1 = TCurrentAccount
 }
