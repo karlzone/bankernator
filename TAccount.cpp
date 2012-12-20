@@ -103,7 +103,7 @@ TMoney TAccount::getBalance() {
 void TAccount::printAccountStatement() {
 	if (bookingCounter == 0)
 		cout << "No bookings..." << endl;
-		return;
+
 	if (!bookingList[bookingCounter - 1]->isPrinted()) {
 		int w = 20;
 
@@ -145,6 +145,7 @@ void TAccount::printAccountStatement() {
 	cout << "aktueller Kontostand: ";
 	this->balance.print();
 	cout << endl;
+
 }
 unsigned TAccount::getBLZ() {
 	return this->bankPtr->getBlz();

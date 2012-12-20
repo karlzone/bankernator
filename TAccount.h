@@ -69,7 +69,7 @@ public:
 	unsigned getBLZ();
 	void printBalance();
 	//virtual TMoney* getDispo();
-	int getAtyp() const;
+	virtual int getAtyp() const;
 
 	virtual TMoney* getDisposit();
 	virtual void setDisposit(TMoney*);

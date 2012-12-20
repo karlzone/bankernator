@@ -22,7 +22,7 @@ public:
 	void setInterestRatePtr(double* interestRate);
 
 	int getAtyp();
-	virtual void printAccountStatement();
+	void printAccountStatement();
 };
 
 } /* namespace std */

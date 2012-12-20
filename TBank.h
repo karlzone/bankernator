@@ -24,7 +24,7 @@ class TBank {
 private:
 	string name;
 	unsigned BLZ;
-	static TAccount *accountList[MAXBANKACCOUNTS];
+	TAccount *accountList[MAXBANKACCOUNTS];
 	int accountCounter;
 public:
 

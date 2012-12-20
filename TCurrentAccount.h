@@ -21,7 +21,7 @@ public:
 	virtual ~TCurrentAccount();
 	TMoney* getDisposit();
 
-	virtual void printAccountStatement();
+	void printAccountStatement();
 	int getAtyp();
 };
 

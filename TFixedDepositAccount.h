@@ -20,7 +20,7 @@ public:
 	virtual ~TFixedDepositAccount();
 
 	int getAtyp();
-	virtual void printAccountStatement();
+	void printAccountStatement();
 };
 
 } /* namespace std */

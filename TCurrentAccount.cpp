@@ -16,6 +16,7 @@ TCurrentAccount::~TCurrentAccount() {
 TCurrentAccount::TCurrentAccount(TCustomer *customerPtr, TBank *bankPtr,
 		string accountNr, string pin, TMoney dispo) : TAccount (customerPtr, bankPtr, accountNr, pin) {
 
+	//FISME kopüierkonstruktor
 	this->Disposit = new TMoney(dispo.getAmount());
 
 }

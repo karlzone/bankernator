@@ -25,7 +25,7 @@ using namespace std;
 
 
 int main() {
-	char ch[1];
+	//char ch[1];
 
 	/* Aufgabe 3
 	TDate Datum1(7, 7, 1977);
@@ -141,6 +141,7 @@ int main() {
 	cout << "Kunde 1:" << endl; Kunde1.print();  cout << endl;
 	cout << "Kunde 2:" << endl; Kunde2.print();  cout << endl;
 	cout << "Bank 1: " << endl; Bank1->print();  cout << endl;
+
 
 	for (int i = 0; i < Bank1->getAccountCounter(); i++)
 	{

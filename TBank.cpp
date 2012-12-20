@@ -12,8 +12,6 @@
 
 namespace std {
 
-TAccount *TBank::accountList[MAXBANKACCOUNTS] = { NULL };
-
 TBank::~TBank() {
 	cout << endl << "All Accounts of Bank: '" << this->name << "' will be deleted" << endl;
 	for (int i = 0; i<this->accountCounter; i++) {
