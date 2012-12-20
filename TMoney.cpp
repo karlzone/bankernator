@@ -68,4 +68,8 @@ void TMoney::print() {
 
 	cout.flags(oldCout);
 }
+istream &operator>> (istream &istr, TMoney &a)
+{
+	return istr;
+}
 }
