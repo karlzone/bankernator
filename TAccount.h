@@ -38,7 +38,7 @@ protected:
 	int bookingCounter;
 
 	TMoney balance;
-	//TMoney* dispo;
+	TMoney* Disposit;
 
 	TBooking *bookingList[MAXBOOKINGS];
 
@@ -70,6 +70,9 @@ public:
 	void printBalance();
 	//virtual TMoney* getDispo();
 	int getAtyp() const;
+
+	virtual TMoney* getDisposit();
+	virtual void setDisposit(TMoney*);
 };
 }
 #endif /* TACCOUNT_H_ */

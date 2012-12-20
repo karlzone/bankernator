@@ -29,7 +29,7 @@ TAccount::TAccount(TCustomer *customerPtr, TBank *bankPtr, string accountNr,
 	this->bookingCounter = 0;
 	this->balance = 0;
 	//this->Atyp = 0;
-	//this->dispo = new TMoney();
+	this->Disposit = new TMoney(0.0);
 }
 
 void TAccount::setBalance(TMoney balance) {
@@ -158,8 +158,13 @@ int TAccount::getAtyp() const {
 	return 0; // 0 = TAccount
 }
 
-/*TMoney* TAccount::getDispo() {
-	return dispo;
-}*/
+TMoney* TAccount::getDisposit() {
+	return Disposit;
+}
+
+void TAccount::setDisposit(TMoney* dispo) {
+	Disposit = dispo;
+}
+
 } /* namespace std */
 
