@@ -70,6 +70,28 @@ void TMoney::print() {
 }
 istream &operator>> (istream &istr, TMoney &a)
 {
-	return istr;
+
+	double am = 0.0;
+	char str[100];
+		string s;
+		while (istr.getline(str, 100)) {
+			s = str;
+			//cheak Amount tag
+			if(s.find("<Amount>")){
+				//read Amount
+				//istr >> am;
+				//set Amount
+				a.setAmount(am);
+			}//cheak Currency tag
+			else if(s.find("<Currency>")){
+				//read Currency
+				//set Currency
+			}//cheak endtag </Money>
+			else if(s.find("</Money>")){
+				break;
+			}
+		}
+		return istr;
+	}
 }
-}
+

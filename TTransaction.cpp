@@ -28,6 +28,7 @@ ostream &operator<<(ostream &ostr, const TTransaction &trans) {
 istream &operator>>(istream &istr, TTransaction &trans) {
 
 	vector<string> v(0), te(0);
+	TMoney money;
 
 	v.push_back("</Transaction>");		//0
 	v.push_back("<AccountNr>");			//1
@@ -71,7 +72,6 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 				trans.contraBLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 9:
-				TMoney money;
 				istr >> money;
 				break;
 			default:
