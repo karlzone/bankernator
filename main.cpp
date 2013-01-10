@@ -84,10 +84,6 @@ int main() {
 	delete Bank1;
 	delete Bank2;
 
-	cout << "Jetzt wird die Bank vernichtet und damit auch die Konten der Bank:"
-			<< endl;
-	delete Bank1;
-
 	cout << endl << endl << endl;
 	cout << "...press return key to close the program..." << endl;
 
