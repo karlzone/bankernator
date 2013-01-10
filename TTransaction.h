@@ -8,8 +8,11 @@
 #ifndef TTRANSACTION_H_
 #define TTRANSACTION_H_
 
+
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "TBank.h"
 #include "bankernatorFktSum.h"

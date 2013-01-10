@@ -22,10 +22,10 @@ TTransaction::~TTransaction() {
 	// TODO Auto-generated destructor stub
 }
 
-ostream &operator<<(ostream &ostr, const TTransaction &a) {
+ostream &operator<<(ostream &ostr, const TTransaction &trans) {
 	return ostr;
-}/*
-istream &operator>>(istream &istr, TTransaction &a) {
+}
+istream &operator>>(istream &istr, TTransaction &trans) {
 
 	vector<string> v(0), te(0);
 
@@ -55,25 +55,26 @@ istream &operator>>(istream &istr, TTransaction &a) {
 			}
 
 		}
+		//substring filter
 		switch (i) {
 			case 1:
-				a.accountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.accountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 3:
-				a.BLZ = (s.substr(v[i].size(),s.find(v[i+1])-v[i].size()));
+				trans.BLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 5:
-				a.contraAccountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.contraAccountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 7:
-				a.contraBLZ = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.contraBLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			default:
 				break;
 		}
 	}
 	return istr;
-}*/
+}
 
 } /* namespace std */
 

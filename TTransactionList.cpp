@@ -24,7 +24,7 @@ TTransactionList::TTransactionList(string dateiname) {
 		s = str;
 		if(s.find("<Transaction>")<=s.size()){
 			TTransaction trans;// =	new TTransaction();
-			//inf >> trans;
+			inf >> trans;
 			transactionsList.push_back(trans);
 		}else if (s.find("</Transactionlist>")) {
 			break;
