@@ -30,14 +30,15 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	vector<string> v(0), te(0);
 
 	v.push_back("</Transaction>");		//0
-	v.push_back("<AccountNr>");			//
+	v.push_back("<AccountNr>");			//1
 	v.push_back("</AccountNr>");		//
-	v.push_back("<BLZ>");				//
+	v.push_back("<BLZ>");				//3
 	v.push_back("</BLZ>");				//
-	v.push_back("<ContraAccountNr>");	//
+	v.push_back("<ContraAccountNr>");	//5
 	v.push_back("</ContraAccountNr>");	//
-	v.push_back("<ContraBLZ>");			//
+	v.push_back("<ContraBLZ>");			//7
 	v.push_back("</ContraBLZ>");		//
+	v.push_back("<TMoney>");			//9
 
 
 	char str[100];
@@ -68,6 +69,10 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 				break;
 			case 7:
 				trans.contraBLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+				break;
+			case 9:
+				TMoney money;
+				istr >> money;
 				break;
 			default:
 				break;

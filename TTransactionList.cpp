@@ -18,6 +18,7 @@ TTransactionList::TTransactionList(string dateiname) {
 	char str[100];
 	string s;
 	while(inf.getline(str,100)){
+		s= str;
 		if(s.find("<TransactionList>")<=s.size())break;
 	}
 	while(inf.getline(str,100)){
