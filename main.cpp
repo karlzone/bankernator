@@ -22,146 +22,85 @@ using namespace std;
 
 //#define DEBUG
 
-
-
 int main() {
 	//char ch[1];
 
-	/* Aufgabe 3
+	char *Dateiname = (char *) "transactions.list";
 	TDate Datum1(7, 7, 1977);
 	TDate Datum2(8, 8, 1988);
+	TDate Datum3(6, 6, 1966);
 	TCustomer Bundesdruckerei("Geldquelle", TDate(), "", "", "", "");
 	TCustomer Kunde1("Egon Muster", Datum1, "Mustergasse", "3a", "99889",
 			"Musterstadt");
 	TCustomer Kunde2("Rudolph Rednose", Datum2, "Berliner Str.", "17", "10999",
 			"Berlin");
-#ifdef DEBUG
-	cout << "Adressen der KundenPtr" << endl;
-	cout << Bundesdruckerei.getName() << ": " <<endl;
-	cout << "Adresse RR: " << &Bundesdruckerei << endl;
-	cout << Kunde1.getName() << ": "<<endl;
-	cout << "Adresse RR: " << &Kunde1 << endl;
-	cout << Kunde2.getName() << ": " <<endl;
-	cout << "Adresse RR: " << &Kunde2 << endl;
-	cout << endl;
-#endif
-
-	TBank Bank1("Berliner Bank", 10020000);
-#ifdef DEBUG
-	cout << "Erstellen der Konten:" << endl;
-	cout << "Geldquelle:"<<endl;
-#endif
-	TAccount Geldquelle(&Bundesdruckerei, &Bank1, "0", "0000");
-#ifdef DEBUG
-	cout << endl;
-	cout << "Konto1:"<<endl;
-#endif
-	TAccount Konto1(&Kunde1, &Bank1, "1234567890", "9999");
-#ifdef DEBUG
-	cout << endl;
-	cout << "Konto2:"<<endl;
-#endif
-	TAccount Konto2(&Kunde2, &Bank1, "9876543120", "0101");
-#ifdef DEBUG
-	cout << endl;
-	cout << "Konto3:"<<endl;
-#endif
-	TAccount Konto3(&Kunde1, &Bank1, "111333555", "1357");
-
-#ifdef DEBUG
-	cout << "Erstellen der Buchungen" << endl;
-	cout << "Geldquelle->Konto1" << endl;
-#endif
-	TBooking Buchung1(TMoney(150.0), &Geldquelle, &Konto1, TDate(), TTime(),
-			string("Startguthaben"));
-#ifdef DEBUG
-	cout << endl;
-	cout << "Bank 1: " << endl;
-	Bank1.print();
-	cout << endl;
-	cout << endl;
-	Konto1.printAccountStatement();
-	cout << endl;
-
-	cout << "Konto1->Konto3"<<endl;
-#endif
-	TBooking Buchung2(TMoney(50.0), &Konto1, &Konto3, TDate(), TTime(),
-			string("Umbuchung"));
-#ifdef DEBUG
-	cout << endl;
-	cout << "Bank 1: " << endl;
-	Bank1.print();
-	cout << endl;
-	cout << endl;
-	Konto1.printAccountStatement();
-	cout << endl;
-	cout << "Konto1->Konto2"<<endl;
-#endif
-	TBooking Buchung3(TMoney(39.9), &Konto1, &Konto2, TDate(), TTime(),
-			string("Rechnung 4711"));
-#ifdef DEBUG
-	cout << endl;
-	cout << "Bank 1: " << endl;
-	Bank1.print();
-	cout << endl;
-	cout << endl;
-	Konto1.printAccountStatement();
-	cout << endl;
-	cout << "Ausgabe Hauptprogramm"<<endl;
-#endif
-// Ausgaben:
-	cout << "Kunde 1:" << endl;
-	Kunde1.print();
-	cout << endl;
-	cout << "Kunde 2:" << endl;
-	Kunde2.print();
-	cout << endl;
-	cout << "Bank 1: " << endl;
-	Bank1.print();
-	cout << endl;
-	cout << endl;
-	Konto1.printAccountStatement();
-	cout << endl;
-	Konto1.printAccountStatement(); // darf die Buchungen nicht noch einmal ausdrucken!*/
-
-	TDate Datum1(7, 7, 1977);
-	TDate Datum2(8, 8, 1988);
-	TCustomer Bundesdruckerei("Geldquelle", TDate(),"", "", "", "");
-	TCustomer Kunde1("Egon Muster", Datum1, "Mustergasse", "3a", "99889", "Musterstadt");
-	TCustomer Kunde2("Rudolph Rednose", Datum2, "Berliner Str.", "17", "10999", "Berlin");
-	TBank *Bank1 = new TBank("Berliner Bank", 10020000);
+	TCustomer Kunde3("Karin Kunze", Datum3, "Muenchner Str.", "39", "90123",
+			"Muenchen");
+	TBank *Bank = NULL;
+	TBank *Bank1 = new TBank("Berliner Bank", "10020000");
+	TBank *Bank2 = new TBank("Muenchner Bank", "10090099");
 	TAccount *Geldquelle = new TAccount(&Bundesdruckerei, Bank1, "0", "0000");
-	TCurrentAccount *Konto1 = new TCurrentAccount(&Kunde1, Bank1, "1234567890", "9999", TMoney(100.0));
-	TSavingsAccount *Konto2 = new TSavingsAccount(&Kunde2, Bank1, "9876543120", "0101", 1.5);
-	TFixedDepositAccount *Konto3 = new TFixedDepositAccount(&Kunde1, Bank1, "111333555", "1357", TMoney(100.0), 1.5);
-	TBooking Buchung1(TMoney(150.0), Konto1, Geldquelle, TDate(), TTime(), string("Startguthaben"));
-	TBooking Buchung2(TMoney(50.0), Konto3, Konto1, TDate(), TTime(), string("Umbuchung"));
-	TBooking Buchung3(TMoney(39.9), Konto2, Konto1, TDate(), TTime(), string("Rechnung 4711"));
-	// Ausgaben:
-	cout << "Kunde 1:" << endl; Kunde1.print();  cout << endl;
-	cout << "Kunde 2:" << endl; Kunde2.print();  cout << endl;
-	cout << "Bank 1: " << endl; Bank1->print();  cout << endl;
-
-
-	for (int i = 0; i < Bank1->getAccountCounter(); i++)
-	{
-	(*Bank1->getAccount(i)).printAccountStatement();
-	cout << endl;
+	TAccount *Konto1 = new TCurrentAccount(&Kunde1, Bank1, "1234567890", "9999",
+			TMoney(100.0));
+	TAccount *Konto2 = new TSavingsAccount(&Kunde2, Bank1, "9876543120", "0101",
+			1.5);
+	TAccount *Konto3 = new TFixedDepositAccount(&Kunde1, Bank2, "111333555",
+			"1357", TMoney(100.0), 1.5);
+	TAccount *Konto4 = new TCurrentAccount(&Kunde3, Bank2, "999777555", "4444",
+			TMoney(200.0));
+	TTransactionList TL(Dateiname);
+	for (unsigned i = 0; i < TL.getTransactionsCount(); i++) {
+		TAccount *Konto = NULL, *Gegenkonto = NULL;
+		Konto = NULL;
+		Bank = getBank(Bank1, Bank2, TL[i].getBLZ());
+		if (Bank)
+			Konto = Bank->getAccount(TL[i].getAccountNr());
+		Gegenkonto = NULL;
+		Bank = getBank(Bank1, Bank2, TL[i].getContraBLZ());
+		if (Bank)
+			Gegenkonto = Bank1->getAccount(TL[i].getContraAccountNr());
+		if (Konto && Gegenkonto)
+			TBooking *Buchung = new TBooking(TL[i].getAmount(), Konto,
+					Gegenkonto, TL.getDate(), TL.getTime(), TL[i].getText());
 	}
-#ifdef DEBUG
-	Bank1->getAccount(0)->printAccountStatement();
-	(*Bank1->getAccount(0)).printAccountStatement();
-#endif
-	cout << "Jetzt wird die Bank vernichtet und damit auch die Konten der Bank:" << endl;
+	// Ausgaben:
+	cout << "Transaktionsliste:" << endl << TL << endl;
+	cout << "Kunde 1:" << endl << Kunde1 << endl;
+	cout << "Kunde 2:" << endl << Kunde2 << endl;
+	cout << "Kunde 3:" << endl << Kunde3 << endl;
+	cout << "Bank 1: " << endl << *Bank1 << endl;
+	cout << "Bank 2: " << endl << *Bank2 << endl;
+	for (int i = 0; i < Bank1->getAccountCounter(); i++) {
+		(Bank1->getAccount(i))->printAccountStatement();
+		cout << endl;
+	}
+	for (int i = 0; i < Bank2->getAccountCounter(); i++) {
+		(Bank2->getAccount(i))->printAccountStatement();
+		cout << endl;
+	}
+	cout
+			<< "Jetzt werden die Banken vernichtet und damit auch die Konten der Banken:"
+			<< endl;
 	delete Bank1;
+	delete Bank2;
 
-
+	cout << "Jetzt wird die Bank vernichtet und damit auch die Konten der Bank:"
+			<< endl;
+	delete Bank1;
 
 	cout << endl << endl << endl;
 	cout << "...press return key to close the program..." << endl;
 
-	//cin.get(ch[1]);
+//cin.get(ch[1]);
 
 	return 0;
+}
+
+TBank *getBank(TBank *B1, TBank *B2, string BLZ) {
+	if ((B1->getBLZ()).compare(BLZ) == 0)
+		returnB1;
+	if ((B2->getBLZ()).compare(BLZ) == 0)
+		returnB2;
+	return NULL;
 }
 
