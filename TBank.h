@@ -45,6 +45,8 @@ public:
 
 	void print();
 
+	void compare();
+
 };
 }
 #endif // TBANK_H_

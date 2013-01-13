@@ -104,4 +104,9 @@ void TBank::print() {
 	cout.fill(oldFill);
 }
 
+
+void TBank::compare() {
+
+}
+
 } /* namespace std */

@@ -19,8 +19,12 @@ using namespace std;
 #include "TCurrentAccount.h"
 #include "TSavingsAccount.h"
 #include "TFixedDepositAccount.h"
+#include "TTransaction.h"
+#include "TTransactionList.h"
 
 //#define DEBUG
+
+TBank* getBank(TBank*, TBank*, unsigned);
 
 int main() {
 	//char ch[1];
@@ -37,8 +41,8 @@ int main() {
 	TCustomer Kunde3("Karin Kunze", Datum3, "Muenchner Str.", "39", "90123",
 			"Muenchen");
 	TBank *Bank = NULL;
-	TBank *Bank1 = new TBank("Berliner Bank", "10020000");
-	TBank *Bank2 = new TBank("Muenchner Bank", "10090099");
+	TBank *Bank1 = new TBank("Berliner Bank", 10020000);
+	TBank *Bank2 = new TBank("Muenchner Bank", 10090099);
 	TAccount *Geldquelle = new TAccount(&Bundesdruckerei, Bank1, "0", "0000");
 	TAccount *Konto1 = new TCurrentAccount(&Kunde1, Bank1, "1234567890", "9999",
 			TMoney(100.0));
@@ -49,10 +53,10 @@ int main() {
 	TAccount *Konto4 = new TCurrentAccount(&Kunde3, Bank2, "999777555", "4444",
 			TMoney(200.0));
 	TTransactionList TL(Dateiname);
-	for (unsigned i = 0; i < TL.getTransactionsCount(); i++) {
+	for (unsigned i = 0; i < TL.getTransactionCounter(); i++) {
 		TAccount *Konto = NULL, *Gegenkonto = NULL;
 		Konto = NULL;
-		Bank = getBank(Bank1, Bank2, TL[i].getBLZ());
+		Bank = getBank(Bank1, Bank2, TL[i].getBlz());
 		if (Bank)
 			Konto = Bank->getAccount(TL[i].getAccountNr());
 		Gegenkonto = NULL;
@@ -92,11 +96,11 @@ int main() {
 	return 0;
 }
 
-TBank *getBank(TBank *B1, TBank *B2, string BLZ) {
-	if ((B1->getBLZ()).compare(BLZ) == 0)
-		returnB1;
-	if ((B2->getBLZ()).compare(BLZ) == 0)
-		returnB2;
+TBank *getBank(TBank *B1, TBank *B2, unsigned BLZ) {
+	if ((B1->getBlz()) == BLZ)
+		return B1;
+	if ((B2->getBlz()) == BLZ)
+		return B2;
 	return NULL;
 }
 

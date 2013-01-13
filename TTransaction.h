@@ -37,6 +37,9 @@ public:
 	virtual ~TTransaction();
 	friend ostream &operator<< (ostream &ostr, const TTransaction &a);
 	friend istream &operator>> (istream &istr, TTransaction &a);
+
+	unsigned getBlz();
+	string getAccountNr();
 };
 
 } /* namespace std */
