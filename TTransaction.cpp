@@ -40,6 +40,8 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	v.push_back("<ContraBLZ>");			//7
 	v.push_back("</ContraBLZ>");		//
 	v.push_back("<TMoney>");			//9
+	v.push_back("<Text>");				//10
+	v.push_back("</Text>");				//11
 
 
 	char str[100];
@@ -60,19 +62,22 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 		//substring filter
 		switch (i) {
 			case 1:
-				trans.accountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.accountNr = insideString(s,v[i],v[i+1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 3:
-				trans.BLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+				trans.BLZ = atoi(insideString(s,v[i],v[i+1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 5:
-				trans.contraAccountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.contraAccountNr = insideString(s,v[i],v[i+1]);//s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 7:
-				trans.contraBLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+				trans.contraBLZ = atoi(insideString(s,v[i],v[i+1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 9:
 				istr >> money;
+				break;
+			case 10:
+				trans.comment = insideString(s,v[i],v[i+1]);
 				break;
 			default:
 				break;

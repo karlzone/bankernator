@@ -14,6 +14,8 @@
 namespace std {
 
 void printHeadLine(int w);
+string insideString(string s, string sA);
+string insideString(string s, string sA, string sB);
 
 }
 #endif /* BANKERNATORFKTSUM_H_ */
