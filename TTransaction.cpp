@@ -86,11 +86,27 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	return istr;
 }
 
+const TMoney& TTransaction::getAmount() const {
+	return amount;
+}
+
+const string& TTransaction::getComment() const {
+	return comment;
+}
+
+const string& TTransaction::getContraAccountNr() const {
+	return contraAccountNr;
+}
+
+unsigned TTransaction::getContraBlz() const {
+	return contraBLZ;
+}
+
 unsigned TTransaction::getBlz() {
 	return this->BLZ;
 }
 
-string TTransaction::AccountNr() {
+string TTransaction::getAccountNr() {
 	return this->accountNr;
 }
 

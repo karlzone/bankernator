@@ -33,7 +33,10 @@ public:
 	virtual ~TTransactionList();
 	TTransaction operator[](int);
 	friend ostream& operator<<(ostream &,TTransactionList&);
-	int getTransactionCounter() const;
+	unsigned getTransactionCounter() const;
+	const TDate& getDate() const;
+	const TTime& getTime() const;
+	const vector<TTransaction>& getTransactionsList() const;
 };
 
 } /* namespace std */

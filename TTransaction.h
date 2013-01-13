@@ -8,8 +8,6 @@
 #ifndef TTRANSACTION_H_
 #define TTRANSACTION_H_
 
-
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -40,6 +38,10 @@ public:
 
 	unsigned getBlz();
 	string getAccountNr();
+	const TMoney& getAmount() const;
+	const string& getComment() const;
+	const string& getContraAccountNr() const;
+	unsigned getContraBlz() const;
 };
 
 } /* namespace std */

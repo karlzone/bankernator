@@ -46,6 +46,11 @@ TAccount* TBank::getAccount(int i) {
 	return this->accountList[i];
 }
 
+ostream &operator<<(ostream &ostr, const TBank &a) {
+	//a.print();
+	return ostr;
+}
+
 unsigned TBank::getBlz() {
 	return BLZ;
 }

@@ -38,19 +38,31 @@ TTransactionList::TTransactionList(string dateiname) {
 TTransactionList::~TTransactionList() {
 	// TODO Auto-generated destructor stub
 }
-/*
+
 TTransaction TTransactionList::operator[](int Index){
 	if((Index >= 0)&&(Index < transactionCounter))
 		return transactionsList[Index];
-//	return TTransaction();
+	return TTransaction();
 }
-*/
-int TTransactionList::getTransactionCounter() const {
+
+const TDate& TTransactionList::getDate() const {
+	return date;
+}
+
+const TTime& TTransactionList::getTime() const {
+	return time;
+}
+
+const vector<TTransaction>& TTransactionList::getTransactionsList() const {
+	return transactionsList;
+}
+
+unsigned TTransactionList::getTransactionCounter() const {
 	return transactionCounter;
 }
 
 ostream& operator<<(ostream &ostr,TTransactionList&ttl){
-	for (int i = 0; i < ttl.getTransactionCounter(); i++) {
+	for (unsigned i = 0; i < ttl.getTransactionCounter(); i++) {
 		ostr <<"Werte["<<i<<"]" << ttl.transactionsList[i]<<endl;
 	}
 	return ostr;

@@ -9,6 +9,7 @@
 #define BANKERNATORFKTSUM_H_
 
 #include <iostream>
+#include <cstdlib>
 //#define DEBUG
 
 namespace std {
