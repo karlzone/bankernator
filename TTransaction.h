@@ -39,16 +39,13 @@ public:
 	unsigned getBLZ();
 	unsigned getContraBLZ();
 	string getAccountNr();
-<<<<<<< HEAD
 	string getContraAccountNr();
 	TMoney getAmount();
 	string getText();
-=======
 	const TMoney& getAmount() const;
 	const string& getComment() const;
 	const string& getContraAccountNr() const;
 	unsigned getContraBlz() const;
->>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
 };
 
 } /* namespace std */

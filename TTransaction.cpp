@@ -86,7 +86,7 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	return istr;
 }
 
-<<<<<<< HEAD
+
 unsigned TTransaction::getBLZ() {
 	return this->BLZ;
 }
@@ -95,7 +95,7 @@ unsigned TTransaction::getContraBLZ() {
 	return this->contraBLZ;
 }
 
-=======
+
 const TMoney& TTransaction::getAmount() const {
 	return amount;
 }
@@ -116,7 +116,7 @@ unsigned TTransaction::getBlz() {
 	return this->BLZ;
 }
 
->>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
+
 string TTransaction::getAccountNr() {
 	return this->accountNr;
 }

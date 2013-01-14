@@ -45,9 +45,9 @@ TTransaction TTransactionList::operator[](int Index){
 	return TTransaction();
 }
 
-<<<<<<< HEAD
 int TTransactionList::getTransactionCounter() const {
-=======
+	return this->transactionCounter;
+}
 const TDate& TTransactionList::getDate() const {
 	return date;
 }
@@ -61,7 +61,6 @@ const vector<TTransaction>& TTransactionList::getTransactionsList() const {
 }
 
 unsigned TTransactionList::getTransactionCounter() const {
->>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
 	return transactionCounter;
 }
 
