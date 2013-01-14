@@ -34,6 +34,8 @@ public:
 	TTransaction operator[](int);
 	friend ostream& operator<<(ostream &,TTransactionList&);
 	int getTransactionCounter() const;
+	TDate getDate();
+	TTime getTime();
 };
 
 } /* namespace std */

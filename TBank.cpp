@@ -46,6 +46,16 @@ TAccount* TBank::getAccount(int i) {
 	return this->accountList[i];
 }
 
+TAccount* TBank::getAccountByNr(string AccNr) {
+	for (int i = 0; i <= accountCounter; i++) {
+		if (accountList[i]->getAccountNr() == AccNr) {
+			return this->accountList[i];
+		} else {
+			cout << "Account not found.." << endl;
+		}
+	}
+}
+
 unsigned TBank::getBlz() {
 	return BLZ;
 }

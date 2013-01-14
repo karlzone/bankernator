@@ -81,12 +81,27 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	return istr;
 }
 
-unsigned TTransaction::getBlz() {
+unsigned TTransaction::getBLZ() {
 	return this->BLZ;
 }
 
-string TTransaction::AccountNr() {
+unsigned TTransaction::getContraBLZ() {
+	return this->contraBLZ;
+}
+
+string TTransaction::getAccountNr() {
 	return this->accountNr;
+}
+
+string TTransaction::getContraAccountNr() {
+	return this->contraAccountNr;
+}
+TMoney TTransaction::getAmount() {
+	return this->amount;
+}
+
+string TTransaction::getText() {
+	return this->comment;
 }
 
 } /* namespace std */

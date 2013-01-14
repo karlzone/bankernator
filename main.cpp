@@ -56,24 +56,24 @@ int main() {
 	for (unsigned i = 0; i < TL.getTransactionCounter(); i++) {
 		TAccount *Konto = NULL, *Gegenkonto = NULL;
 		Konto = NULL;
-		Bank = getBank(Bank1, Bank2, TL[i].getBlz());
+		Bank = getBank(Bank1, Bank2, TL[i].getBLZ());
 		if (Bank)
-			Konto = Bank->getAccount(TL[i].getAccountNr());
+			Konto = Bank->getAccountByNr(TL[i].getAccountNr());
 		Gegenkonto = NULL;
-		Bank = getBank(Bank1, Bank2, TL[i].getContraBLZ());
+		Bank = getBank(Bank1, Bank2, TL[i].getContraBLZ()); //
 		if (Bank)
-			Gegenkonto = Bank1->getAccount(TL[i].getContraAccountNr());
+			Gegenkonto = Bank1->getAccountByNr (TL[i].getContraAccountNr());
 		if (Konto && Gegenkonto)
 			TBooking *Buchung = new TBooking(TL[i].getAmount(), Konto,
 					Gegenkonto, TL.getDate(), TL.getTime(), TL[i].getText());
 	}
 	// Ausgaben:
 	cout << "Transaktionsliste:" << endl << TL << endl;
-	cout << "Kunde 1:" << endl << Kunde1 << endl;
-	cout << "Kunde 2:" << endl << Kunde2 << endl;
-	cout << "Kunde 3:" << endl << Kunde3 << endl;
-	cout << "Bank 1: " << endl << *Bank1 << endl;
-	cout << "Bank 2: " << endl << *Bank2 << endl;
+	//cout << "Kunde 1:" << endl << Kunde1 << endl;
+	//cout << "Kunde 2:" << endl << Kunde2 << endl;
+	//cout << "Kunde 3:" << endl << Kunde3 << endl;
+	//cout << "Bank 1: " << endl << *Bank1 << endl;
+	//cout << "Bank 2: " << endl << *Bank2 << endl;
 	for (int i = 0; i < Bank1->getAccountCounter(); i++) {
 		(Bank1->getAccount(i))->printAccountStatement();
 		cout << endl;

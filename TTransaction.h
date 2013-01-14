@@ -38,8 +38,12 @@ public:
 	friend ostream &operator<< (ostream &ostr, const TTransaction &a);
 	friend istream &operator>> (istream &istr, TTransaction &a);
 
-	unsigned getBlz();
+	unsigned getBLZ();
+	unsigned getContraBLZ();
 	string getAccountNr();
+	string getContraAccountNr();
+	TMoney getAmount();
+	string getText();
 };
 
 } /* namespace std */

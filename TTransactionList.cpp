@@ -38,13 +38,13 @@ TTransactionList::TTransactionList(string dateiname) {
 TTransactionList::~TTransactionList() {
 	// TODO Auto-generated destructor stub
 }
-/*
+
 TTransaction TTransactionList::operator[](int Index){
 	if((Index >= 0)&&(Index < transactionCounter))
 		return transactionsList[Index];
 //	return TTransaction();
 }
-*/
+
 int TTransactionList::getTransactionCounter() const {
 	return transactionCounter;
 }
@@ -54,6 +54,14 @@ ostream& operator<<(ostream &ostr,TTransactionList&ttl){
 		ostr <<"Werte["<<i<<"]" << ttl.transactionsList[i]<<endl;
 	}
 	return ostr;
+}
+
+TDate TTransactionList::getDate() {
+	return this->date;
+}
+
+TTime TTransactionList::getTime() {
+	return this->time;
 }
 
 } /* namespace std */
