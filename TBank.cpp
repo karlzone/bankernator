@@ -46,6 +46,7 @@ TAccount* TBank::getAccount(int i) {
 	return this->accountList[i];
 }
 
+<<<<<<< HEAD
 TAccount* TBank::getAccountByNr(string AccNr) {
 	for (int i = 0; i <= accountCounter; i++) {
 		if (accountList[i]->getAccountNr() == AccNr) {
@@ -54,6 +55,11 @@ TAccount* TBank::getAccountByNr(string AccNr) {
 			cout << "Account not found.." << endl;
 		}
 	}
+=======
+ostream &operator<<(ostream &ostr, const TBank &a) {
+	//a.print();
+	return ostr;
+>>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
 }
 
 unsigned TBank::getBlz() {

@@ -42,15 +42,31 @@ TTransactionList::~TTransactionList() {
 TTransaction TTransactionList::operator[](int Index){
 	if((Index >= 0)&&(Index < transactionCounter))
 		return transactionsList[Index];
-//	return TTransaction();
+	return TTransaction();
 }
 
+<<<<<<< HEAD
 int TTransactionList::getTransactionCounter() const {
+=======
+const TDate& TTransactionList::getDate() const {
+	return date;
+}
+
+const TTime& TTransactionList::getTime() const {
+	return time;
+}
+
+const vector<TTransaction>& TTransactionList::getTransactionsList() const {
+	return transactionsList;
+}
+
+unsigned TTransactionList::getTransactionCounter() const {
+>>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
 	return transactionCounter;
 }
 
 ostream& operator<<(ostream &ostr,TTransactionList&ttl){
-	for (int i = 0; i < ttl.getTransactionCounter(); i++) {
+	for (unsigned i = 0; i < ttl.getTransactionCounter(); i++) {
 		ostr <<"Werte["<<i<<"]" << ttl.transactionsList[i]<<endl;
 	}
 	return ostr;

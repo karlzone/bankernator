@@ -73,21 +73,21 @@ istream &operator>> (istream &istr, TMoney &a)
 
 	double am = 0.0;
 	char str[100];
-		string s;
-		while (istr.getline(str, 100)) {
+	string s;
+	int size;
+	while (istr.getline(str, 100)) {
 			s = str;
+			size = s.size();
 			//cheak Amount tag
-			if(s.find("<Amount>")){
-				//read Amount
-				//istr >> am;
-				//set Amount
+
+			if(s.find("<Amount>") <= size){
+				am = atof(insideString(s,"<Amount>","</Amount>").c_str());
 				a.setAmount(am);
 			}//cheak Currency tag
-			else if(s.find("<Currency>")){
-				//read Currency
-				//set Currency
+			else if(s.find("<Currency>") <= size){
+				a.setCurrency(insideString(s,"<Currency>","</Currency"));
 			}//cheak endtag </Money>
-			else if(s.find("</Money>")){
+			else if(s.find("</Money>") <= size){
 				break;
 			}
 		}

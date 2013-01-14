@@ -1,0 +1,47 @@
+<Transactionlist>
+ <Transaction>
+  <AccountNr>1234567890</AccountNr>
+  <BLZ>10020000</BLZ>
+  <ContraAccountNr>0</ContraAccountNr>
+  <ContraBLZ>10020000</ContraBLZ>
+  <Money>
+   <Amount>150.00</Amount>
+   <Currency>EUR</Currency>
+  </Money>
+  <Text>Startguthaben</Text>
+ </Transaction>
+ <Transaction>
+  <AccountNr>111333555</AccountNr>
+  <BLZ>10090099</BLZ>
+  <ContraAccountNr>1234567890</ContraAccountNr>
+  <ContraBLZ>10020000</ContraBLZ>
+  <Money>
+   <Amount>50.00</Amount>
+   <Currency>EUR</Currency>
+  </Money>
+  <Text>Umbuchung</Text>
+ </Transaction>
+ <Transaction>
+  <AccountNr>9876543120</AccountNr>
+  <BLZ>10020000</BLZ>
+  <ContraAccountNr>1234567890</ContraAccountNr>
+  <ContraBLZ>10020000</ContraBLZ>
+  <Money>
+   <Amount>39.90</Amount>
+   <Currency>EUR</Currency>
+  </Money>
+  <Text>Rechnung 4711</Text>
+ </Transaction>
+ <Transaction>
+  <AccountNr>999777555</AccountNr>
+  <BLZ>10090099</BLZ>
+  <ContraAccountNr>1234567890</ContraAccountNr>
+  <ContraBLZ>10020000</ContraBLZ>
+  <Money>
+   <Amount>9.90</Amount>
+   <Currency>EUR</Currency>
+  </Money>
+  <Text>Rechnung 0815</Text>
+ </Transaction>
+</Transactionlist>
+

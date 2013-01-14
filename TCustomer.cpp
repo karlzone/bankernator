@@ -95,6 +95,11 @@ int TCustomer::getAccountCounter() {
  this->sumOfTAccounts = sumOfTAccounts;
  }*/
 
+ostream &operator<<(ostream &ostr, const TBank &a) {
+	//a.print();
+	return ostr;
+}
+
 void TCustomer::print() {
 
 	cout << name << endl;

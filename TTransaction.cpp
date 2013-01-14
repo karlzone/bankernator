@@ -40,6 +40,8 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	v.push_back("<ContraBLZ>");			//7
 	v.push_back("</ContraBLZ>");		//
 	v.push_back("<TMoney>");			//9
+	v.push_back("<Text>");				//10
+	v.push_back("</Text>");				//11
 
 
 	char str[100];
@@ -60,19 +62,22 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 		//substring filter
 		switch (i) {
 			case 1:
-				trans.accountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.accountNr = insideString(s,v[i],v[i+1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 3:
-				trans.BLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+				trans.BLZ = atoi(insideString(s,v[i],v[i+1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 5:
-				trans.contraAccountNr = s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+				trans.contraAccountNr = insideString(s,v[i],v[i+1]);//s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
 			case 7:
-				trans.contraBLZ = atoi((s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+				trans.contraBLZ = atoi(insideString(s,v[i],v[i+1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
 				break;
 			case 9:
 				istr >> money;
+				break;
+			case 10:
+				trans.comment = insideString(s,v[i],v[i+1]);
 				break;
 			default:
 				break;
@@ -81,6 +86,7 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	return istr;
 }
 
+<<<<<<< HEAD
 unsigned TTransaction::getBLZ() {
 	return this->BLZ;
 }
@@ -89,6 +95,28 @@ unsigned TTransaction::getContraBLZ() {
 	return this->contraBLZ;
 }
 
+=======
+const TMoney& TTransaction::getAmount() const {
+	return amount;
+}
+
+const string& TTransaction::getComment() const {
+	return comment;
+}
+
+const string& TTransaction::getContraAccountNr() const {
+	return contraAccountNr;
+}
+
+unsigned TTransaction::getContraBlz() const {
+	return contraBLZ;
+}
+
+unsigned TTransaction::getBlz() {
+	return this->BLZ;
+}
+
+>>>>>>> 6e3185f6d8e3c19f003ef29a4e275e395a60f8f1
 string TTransaction::getAccountNr() {
 	return this->accountNr;
 }

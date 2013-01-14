@@ -33,6 +33,8 @@ public:
 			string postcode, string city);
 	virtual ~TCustomer();
 
+	friend ostream &operator<< (ostream &ostr, const TCustomer &a);
+
 	TDate getBirthday();
 	void setBirthday(TDate birthday);
 
