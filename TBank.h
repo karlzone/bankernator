@@ -31,7 +31,7 @@ public:
 	TBank(string, unsigned);
 	virtual ~TBank();
 
-	friend ostream &operator<< (ostream &ostr, const TBank &a);
+	//friend ostream &operator<< (ostream &ostr, const TBank &a);
 
 	int getAccountCounter();
 

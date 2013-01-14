@@ -60,9 +60,6 @@ const vector<TTransaction>& TTransactionList::getTransactionsList() const {
 	return transactionsList;
 }
 
-unsigned TTransactionList::getTransactionCounter() const {
-	return transactionCounter;
-}
 
 ostream& operator<<(ostream &ostr,TTransactionList&ttl){
 	for (unsigned i = 0; i < ttl.getTransactionCounter(); i++) {
@@ -71,12 +68,6 @@ ostream& operator<<(ostream &ostr,TTransactionList&ttl){
 	return ostr;
 }
 
-TDate TTransactionList::getDate() {
-	return this->date;
-}
 
-TTime TTransactionList::getTime() {
-	return this->time;
-}
 
 } /* namespace std */

@@ -60,7 +60,7 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 
 		}
 		//substring filter
-		switch (i) {
+		/*switch (i) {
 			case 1:
 				trans.accountNr = insideString(s,v[i],v[i+1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
@@ -81,55 +81,33 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 				break;
 			default:
 				break;
-		}
+		}*/
 	}
 	return istr;
 }
 
-
-unsigned TTransaction::getBLZ() {
-	return this->BLZ;
+const string& TTransaction::getAccountNr() const {
+	return this->accountNr;
 }
-
-unsigned TTransaction::getContraBLZ() {
-	return this->contraBLZ;
-}
-
 
 const TMoney& TTransaction::getAmount() const {
 	return amount;
 }
 
-const string& TTransaction::getComment() const {
-	return comment;
+unsigned TTransaction::getBLZ() {
+	return this->BLZ;
 }
 
 const string& TTransaction::getContraAccountNr() const {
 	return contraAccountNr;
 }
 
-unsigned TTransaction::getContraBlz() const {
+unsigned TTransaction::getContraBLZ() const {
 	return contraBLZ;
 }
 
-unsigned TTransaction::getBlz() {
-	return this->BLZ;
-}
-
-
-string TTransaction::getAccountNr() {
-	return this->accountNr;
-}
-
-string TTransaction::getContraAccountNr() {
-	return this->contraAccountNr;
-}
-TMoney TTransaction::getAmount() {
-	return this->amount;
-}
-
-string TTransaction::getText() {
-	return this->comment;
+const string& TTransaction::getText() const {
+	return comment;
 }
 
 } /* namespace std */

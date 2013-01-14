@@ -28,17 +28,16 @@ class TTransactionList {
 	TTime time;
 	vector<TTransaction> transactionsList;
 	int transactionCounter;
+
 public:
+
 	TTransactionList(string);
 	virtual ~TTransactionList();
+
 	TTransaction operator[](int);
 	friend ostream& operator<<(ostream &,TTransactionList&);
 
 	int getTransactionCounter() const;
-	TDate getDate();
-	TTime getTime();
-
-	unsigned getTransactionCounter() const;
 	const TDate& getDate() const;
 	const TTime& getTime() const;
 	const vector<TTransaction>& getTransactionsList() const;

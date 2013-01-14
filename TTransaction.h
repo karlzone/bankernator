@@ -30,22 +30,21 @@ class TTransaction {
 	unsigned contraBLZ;
 	TMoney amount;
 	string comment;
+
 public:
+
 	TTransaction();
 	virtual ~TTransaction();
+
 	friend ostream &operator<< (ostream &ostr, const TTransaction &a);
 	friend istream &operator>> (istream &istr, TTransaction &a);
 
-	unsigned getBLZ();
-	unsigned getContraBLZ();
-	string getAccountNr();
-	string getContraAccountNr();
-	TMoney getAmount();
-	string getText();
+	const string& getAccountNr() const;
 	const TMoney& getAmount() const;
-	const string& getComment() const;
+	unsigned getBLZ();
 	const string& getContraAccountNr() const;
-	unsigned getContraBlz() const;
+	unsigned getContraBLZ() const;
+	const string& getText() const;
 };
 
 } /* namespace std */
