@@ -62,10 +62,10 @@ int main() {
 		Gegenkonto = NULL;
 		Bank = getBank(Bank1, Bank2, TL[i].getContraBLZ()); //
 		if (Bank)
-			Gegenkonto = Bank1->getAccountByNr (TL[i].getContraAccountNr());
+			Gegenkonto = Bank1->getAccountByNr(TL[i].getContraAccountNr());
 		if (Konto && Gegenkonto)
-			TBooking *Buchung = new TBooking(TL[i].getAmount(), Konto,
-					Gegenkonto, TL.getDate(), TL.getTime(), TL[i].getText());
+			TBooking *Buchung = new TBooking(TL[i].getAmount(), Gegenkonto,
+					Konto, TL.getDate(), TL.getTime(), TL[i].getText());
 	}
 	// Ausgaben:
 	cout << "Transaktionsliste:" << endl << TL << endl;
