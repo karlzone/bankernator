@@ -23,8 +23,15 @@ TTransaction::~TTransaction() {
 }
 
 ostream &operator<<(ostream &ostr, const TTransaction &trans) {
+	ostr << "AccountNr = " << trans.accountNr << endl;
+	ostr << "BLZ = " << trans.BLZ << endl;
+	ostr << "ContraAccountNr = " << trans.contraAccountNr << endl;
+	ostr << "ContraBLZ = " << trans.contraBLZ << endl;
+	ostr << "Amount = " << trans.amount << endl;
+	ostr << "Text = " << trans.comment << endl;
 	return ostr;
 }
+
 istream &operator>>(istream &istr, TTransaction &trans) {
 
 	vector<string> v(0), te(0);
@@ -47,50 +54,54 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	v.push_back("<Text>");				//11
 	v.push_back("</Text>");				//12
 
-		while (istr.getline(str, 100)) {
-			s = str;
-			// FIXME causes bypass of Money
-			 for (i = j; i < (int) v.size(); i++) {
-				if (s.find(v[0]) <= s.size()) {
+	while (istr.getline(str, 100)) {
+		s = str;
+		// FIXME causes bypass of Money
+		for (i = j; i < (int) v.size(); i++) {
+			if (s.find(v[0]) <= s.size()) {
+				break;
+			} else if (s.find(v[i]) <= s.size()) {
+				if (s.find(v[i + 1]) <= s.size()) {
 					break;
-				} else if (s.find(v[i]) <= s.size()) {
-					if (s.find(v[i + 1]) <= s.size()) {
-						break;
-					} else if (s.find(v[9])) {
-						break;
-					}
+				} else if (s.find(v[9])) {
+					break;
 				}
 			}
-
-			//substring filter
-			switch (i) {
-			case 0:
-				return istr;
-			case 1:
-				trans.accountNr = insideString(s, v[i], v[i + 1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
-				j=1;
-				break;
-			case 3:
-				trans.BLZ = atoi(insideString(s, v[i], v[i + 1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
-				j=3;
-				break;
-			case 5:
-				trans.contraAccountNr = insideString(s, v[i], v[i + 1]);//s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
-				break;
-			case 7:
-				trans.contraBLZ = atoi(insideString(s, v[i], v[i + 1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
-				break;
-			case 9:
-				istr >> money;
-				break;
-			case 11:
-				trans.comment = insideString(s, v[i], v[i + 1]);
-				j = 0;
-				break;
-			default:
-				break;
-			}
 		}
+
+		//substring filter
+		switch (i) {
+		case 0:
+			return istr;
+		case 1:
+			trans.accountNr = insideString(s, v[i], v[i + 1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+			j = 1;
+			break;
+		case 3:
+			trans.BLZ = atoi(insideString(s, v[i], v[i + 1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+			j = 3;
+			break;
+		case 5:
+			trans.contraAccountNr = insideString(s, v[i], v[i + 1]);//s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
+			j = 5;
+			break;
+		case 7:
+			trans.contraBLZ = atoi(insideString(s, v[i], v[i + 1]).c_str());//(s.substr(v[i].size(),s.find(v[i+1])-v[i].size())).c_str());
+			j = 7;
+			break;
+		case 9:
+			istr >> money;
+			trans.amount = money;
+			j = 9;
+			break;
+		case 11:
+			trans.comment = insideString(s, v[i], v[i + 1]);
+			j = 0;
+			break;
+		default:
+			break;
+		}
+	}
 	return istr;
 }
 

@@ -34,7 +34,8 @@ public:
 	//TMoney increaseBalance(double);
 	//TMoney decreaseBalance(double);
 	void print();
-	friend istream &operator>> (istream &istr, TMoney a);
+	friend istream &operator>>(istream &istr, TMoney &a);
+	friend ostream &operator<<(ostream &ostr, const TMoney &a);
 };
 }
 #endif /* TMONEY_H_ */

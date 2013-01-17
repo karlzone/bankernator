@@ -62,6 +62,8 @@ public:
 	void addAccount(TAccount * accountPtr);
 
 	void print();
+
+	friend ostream& operator<<(ostream &, TCustomer&);
 };
 }
 #endif /* TCUSTOMER_H_ */

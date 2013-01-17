@@ -51,6 +51,8 @@ public:
 
 	void compare();
 
+	friend ostream& operator<<(ostream &, TBank*);
+
 };
 }
 #endif // TBANK_H_

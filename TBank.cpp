@@ -48,11 +48,12 @@ TAccount* TBank::getAccount(int i) {
 
 
 TAccount* TBank::getAccountByNr(string AccNr) {
-	for (int i = 0; i <= accountCounter; i++) {
+	for (int i = 0; i < accountCounter; i++) {
 		if (accountList[i]->getAccountNr() == AccNr) {
 			return this->accountList[i];
 		} else {
 			cout << "Account not found.." << endl;
+			return NULL;
 		}
 	}
 }
@@ -123,6 +124,44 @@ void TBank::print() {
 
 void TBank::compare() {
 
+}
+
+ostream& operator<<(ostream &ostr, TBank* bank) {
+	int w = 20;								//Spaltenbreite in der Anzeige
+		ostr << bank->name << endl;
+		ostr << bank->BLZ << endl;
+		ostr << "Amount of accounts: " << bank->accountCounter << endl;
+		ostr << "Account list" << endl;
+
+		char oldFill = ostr.fill();
+		ostr.fill(' ');
+		//Kopfzeile
+		ostr.width(w);
+		ostr << "Accountnr." << '|';
+		ostr.width(w);
+		ostr << "Customer name" << '|';
+		ostr.width(w);
+		ostr << "Amount of bookings" << '|';
+		ostr.width(w);
+		ostr << "Balance" << endl;
+		//Tabellenkörper
+		for (int i = 0; i < bank->accountCounter; i++) {
+			ostr.width(w);
+			ostr << bank->accountList[i]->getAccountNr() << '|';
+			ostr.width(w);
+	#ifdef DEBUG
+			ostr << "Adr. RR: " << accountList[i]->getCustomerPtr() << "|" << flush;
+	#else
+			ostr << (bank->accountList[i]->getCustomerPtr())->getName() << '|';
+	#endif
+			ostr.width(w);
+			ostr << bank->accountList[i]->getBookingCounter() << '|';
+			ostr.width(w);
+			bank->accountList[i]->getBalance().print();
+			ostr << endl;
+		}
+		ostr.fill(oldFill);
+	return ostr;
 }
 
 } /* namespace std */

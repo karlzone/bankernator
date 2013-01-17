@@ -22,7 +22,7 @@ using namespace std;
 #include "TTransaction.h"
 #include "TTransactionList.h"
 
-//#define DEBUG
+#define DEBUG
 
 TBank* getBank(TBank*, TBank*, unsigned);
 
@@ -58,10 +58,16 @@ int main() {
 		Konto = NULL;
 		Bank = getBank(Bank1, Bank2, TL[i].getBLZ());
 		if (Bank)
+#ifdef DEBUG
+			cout << "Account Zeiger: " <<Bank->getAccountByNr(TL[i].getAccountNr()) << endl;;
+#endif
 			Konto = Bank->getAccountByNr(TL[i].getAccountNr());
 		Gegenkonto = NULL;
 		Bank = getBank(Bank1, Bank2, TL[i].getContraBLZ()); //
 		if (Bank)
+#ifdef DEBUG
+			cout << "ContraAccount Zeiger: " << Bank->getAccountByNr(TL[i].getContraAccountNr()) << endl;;
+#endif
 			Gegenkonto = Bank1->getAccountByNr(TL[i].getContraAccountNr());
 		if (Konto && Gegenkonto)
 			TBooking *Buchung = new TBooking(TL[i].getAmount(), Gegenkonto,
@@ -69,11 +75,11 @@ int main() {
 	}
 	// Ausgaben:
 	cout << "Transaktionsliste:" << endl << TL << endl;
-	//cout << "Kunde 1:" << endl << Kunde1 << endl;
-	//cout << "Kunde 2:" << endl << Kunde2 << endl;
-	//cout << "Kunde 3:" << endl << Kunde3 << endl;
-	//cout << "Bank 1: " << endl << *Bank1 << endl;
-	//cout << "Bank 2: " << endl << *Bank2 << endl;
+	cout << "Kunde 1:" << endl << Kunde1 << endl;
+	cout << "Kunde 2:" << endl << Kunde2 << endl;
+	cout << "Kunde 3:" << endl << Kunde3 << endl;
+	cout << "Bank 1: " << endl << Bank1 << endl;
+	cout << "Bank 2: " << endl << Bank2 << endl;
 	for (int i = 0; i < Bank1->getAccountCounter(); i++) {
 		(Bank1->getAccount(i))->printAccountStatement();
 		cout << endl;
@@ -97,10 +103,18 @@ int main() {
 }
 
 TBank *getBank(TBank *B1, TBank *B2, unsigned BLZ) {
-	if ((B1->getBlz()) == BLZ)
+	if ((B1->getBlz()) == BLZ) {
+#ifdef DEBUG
+		cout << "Bank1:" << B1->getBlz() << endl;
+#endif
 		return B1;
-	if ((B2->getBlz()) == BLZ)
+	}
+	if ((B2->getBlz()) == BLZ) {
+#ifdef DEBUG
+		cout << "Bank2:" << B2->getBlz() << endl;
+#endif
 		return B2;
+	}
 	return NULL;
 }
 

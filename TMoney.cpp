@@ -69,7 +69,7 @@ void TMoney::print() {
 	cout.flags(oldCout);
 }
 
-istream &operator>>(istream &istr, TMoney a) {
+istream &operator>>(istream &istr, TMoney &a) {
 	double am = 0.0;
 	char str[100];
 	string s;
@@ -79,18 +79,33 @@ istream &operator>>(istream &istr, TMoney a) {
 		size = s.size();
 		//cheak Amount tag
 
-		if (s.find("<Amount>") <= size) {
+		if (s.find("<Amount>") <= (unsigned) size) {
 			am = atof(insideString(s, "<Amount>", "</Amount>").c_str());
 			a.setAmount(am);
 		}	//cheak Currency tag
-		else if (s.find("<Currency>") <= size) {
+		else if (s.find("<Currency>") <= (unsigned) size) {
 			a.setCurrency(insideString(s, "<Currency>", "</Currency"));
 		}	//cheak endtag </Money>
-		else if (s.find("</Money>") <= size) {
+		else if (s.find("</Money>") <= (unsigned) size) {
 			break;
 		}
 	}
 	return istr;
 }
+
+ostream& operator<<(ostream &ostr, const TMoney &money) {
+	ios::fmtflags oldCout;
+		ios::fmtflags newCout = (ios::dec | ios::fixed);	//decimal and fixed
+		oldCout = ostr.flags();
+		ostr.flags(newCout);
+
+		ostr.precision(2);
+		ostr << fixed << money.amount << " " << money.currency;
+		ostr.flush();
+
+		ostr.flags(oldCout);
+	return ostr;
+}
+
 }
 

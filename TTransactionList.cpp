@@ -7,7 +7,7 @@
 
 #include "TTransactionList.h"
 
-#define DEBUG
+//#define DEBUG
 
 namespace std {
 
@@ -43,6 +43,19 @@ TTransactionList::TTransactionList(string dateiname) {
 				TTransaction ta;
 				inf >> ta;
 				this->transactionsList.push_back(ta);
+				//this->transactionCounter = (int) this->transactionsList.size() - 1;
+				this->transactionCounter++;
+#ifdef DEBUG
+				cout << "TransactionList: trans.get..." << endl;
+				cout << "AccNr:    " << ta.getAccountNr() << endl;
+				cout << "BLZ:      " << ta.getBLZ() << endl;
+				cout << "ConAccNr: " << ta.getContraAccountNr() << endl;
+				cout << "ConBLZ:   " << ta.getContraBLZ() << endl;
+				cout << "Text:     " << ta.getText() << endl;
+				cout << "Amount:   " << ta.getAmount().getAmount() << endl;
+				cout << "TransactionList: add the Transaction and count up :"
+				<< transactionCounter << endl;
+#endif
 				/*	inf.getline(str, 100);
 				 swap = str;
 
@@ -54,7 +67,7 @@ TTransactionList::TTransactionList(string dateiname) {
 				 }*/
 			}
 		}
-		cout << "TransactionList read sucessfully.." << endl;
+		cout << endl << "TransactionList read sucessfully.." << endl;
 	} else {
 		cout << "No TransactionList found or file is broken.." << endl;
 	}
@@ -108,7 +121,8 @@ const vector<TTransaction>& TTransactionList::getTransactionsList() const {
 
 ostream& operator<<(ostream &ostr, TTransactionList&ttl) {
 	for (int i = 0; i < ttl.getTransactionCounter(); i++) {
-		ostr << "Werte[" << i << "]" << ttl.transactionsList[i] << endl;
+		ostr << endl << "Transaction [" << i << "]" << endl;
+		ostr << ttl.transactionsList[i] << endl;
 	}
 	return ostr;
 }

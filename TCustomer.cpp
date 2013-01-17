@@ -135,4 +135,24 @@ void TCustomer::addAccount(TAccount* accountPtr) {
 	accountCounter++;
 
 }
+
+ostream& operator<<(ostream &ostr, TCustomer &cust) {
+	ostr << cust.name << endl;
+	ostr << cust.street << endl;
+	ostr << cust.postcode << " " << cust.city << endl;
+	ostr << "born on: ";
+	cust.birthday.print();
+		ostr << endl;
+		ostr << "Accounts:" << endl;
+		for (int i = 0; i < cust.getAccountCounter(); i++) {
+			ostr << "-  Account number:   ";
+			//cout << i << endl;
+			ostr << cust.accountList[i]->getAccountNr() << "  (Balance:    ";
+			cust.accountList[i]->printBalance();
+			ostr << ")" << endl;
+			//accountPtr[i] ->printAccountNr();
+		}
+	return ostr;
 }
+
+} //namespace std
