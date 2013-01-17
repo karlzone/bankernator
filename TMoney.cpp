@@ -4,6 +4,7 @@
  *  Created on: 18 Oct 2012
  *      Author: karsten
  */
+//#define DEBUG
 
 #include <iostream>
 #include <ios>
@@ -68,26 +69,55 @@ void TMoney::print() {
 
 	cout.flags(oldCout);
 }
+ostream &operator<< (ostream &ostr, const TMoney &a){
+	ios::fmtflags oldCout;
+	ios::fmtflags newCout = (ios::dec | ios::fixed);	//decimal and fixed
+	oldCout = ostr.flags();
+	ostr.flags(newCout);
+
+	ostr.precision(2);
+	ostr << fixed << a.amount << " "<< a.currency;
+
+	ostr.flags(oldCout);
+	return ostr;
+}
+
 istream &operator>> (istream &istr, TMoney &a)
 {
-
-	double am = 0.0;
+#ifdef DEBUG
+	cout << "TMoney: operator>>" << endl;
+#endif
 	char str[100];
 	string s;
-	int size;
+	unsigned size;
 	while (istr.getline(str, 100)) {
 			s = str;
 			size = s.size();
 			//cheak Amount tag
 
 			if(s.find("<Amount>") <= size){
-				am = atof(insideString(s,"<Amount>","</Amount>").c_str());
-				a.setAmount(am);
+#ifdef DEBUG
+	cout << "TMoney: <Amount>tag find" << endl;
+#endif
+				a.amount = atof(insideString(s,"<Amount>","</Amount>").c_str());;
+#ifdef DEBUG
+	cout << "TMoney: a.amount = "<< a.amount <<";" << endl;
+#endif
 			}//cheak Currency tag
 			else if(s.find("<Currency>") <= size){
-				a.setCurrency(insideString(s,"<Currency>","</Currency"));
+#ifdef DEBUG
+	cout << "TMoney: <Currency>tag find" << endl;
+#endif
+				a.currency = insideString(s,"<Currency>","</Currency");
+#ifdef DEBUG
+	cout << "TMoney: a.currency = "<< a.currency <<";" << endl;
+#endif
 			}//cheak endtag </Money>
 			else if(s.find("</Money>") <= size){
+#ifdef DEBUG
+	cout << "TMoney: </Money>tag find" << endl;
+#endif
+				return istr;
 				break;
 			}
 		}

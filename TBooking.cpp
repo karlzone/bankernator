@@ -19,7 +19,7 @@ TBooking::TBooking(TBooking *tbp) {
 	sourcePtr->setBalance((sourcePtr->getBalance()) + amount);
 }
 
-TBooking::TBooking(TMoney amount, TAccount *sourcePtr, TAccount *destinPtr,
+TBooking::TBooking(TMoney amount, TAccount *destinPtr, TAccount *sourcePtr,
 		TDate date, TTime time, string comment) {
 	switch (sourcePtr->getAtyp()) {
 		case 0:

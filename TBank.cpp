@@ -31,7 +31,7 @@ void TBank::addAccount(TAccount *accountPtr) {
 	cout << "TBank:addAccount:accountPtr: " << accountPtr->getCustomerPtr()->getName() << endl;
 	cout << "TBank:addAccount:accountPtr: " << accountPtr->getCustomerPtr() << endl;
 #endif
-
+	//l.push_front(accountPtr);
 	this->accountList[accountCounter] = accountPtr;
 
 #ifdef DEBUG
@@ -48,19 +48,29 @@ TAccount* TBank::getAccount(int i) {
 
 
 TAccount* TBank::getAccountByNr(string AccNr) {
+#ifdef DEBUG
+	cout << "TBank: getAccountByNr("<<AccNr<<")" << endl;
+#endif
 	for (int i = 0; i <= accountCounter; i++) {
+#ifdef DEBUG
+		cout << "TBank: getAccountByNr("<<AccNr<<"): for ("<<i<<"<="<<accountCounter<<")" << endl;
+#endif
 		if (accountList[i]->getAccountNr() == AccNr) {
+#ifdef DEBUG
+	cout << "TBank: getAccountByNr("<<AccNr<<") Acc found" << endl;
+#endif
 			return this->accountList[i];
-		} else {
-			cout << "Account not found.." << endl;
 		}
 	}
+	cout << "Account not found.." << endl;
+	return NULL;
 }
 
-/*ostream &operator<<(ostream &ostr, const TBank &a) {
-	//a.print();
+ostream &operator<<(ostream &ostr, const TBank &a) {
+	TBank tmp = a;
+	tmp.print();
 	return ostr;
-}*/
+}
 
 unsigned TBank::getBlz() {
 	return BLZ;
@@ -124,5 +134,4 @@ void TBank::print() {
 void TBank::compare() {
 
 }
-
 } /* namespace std */

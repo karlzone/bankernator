@@ -25,13 +25,14 @@ private:
 	string name;
 	unsigned BLZ;
 	TAccount *accountList[MAXBANKACCOUNTS];
+	//TListe<TAccount*>l;
 	int accountCounter;
 public:
 
 	TBank(string, unsigned);
 	virtual ~TBank();
 
-	//friend ostream &operator<< (ostream &ostr, const TBank &a);
+	friend ostream &operator<< (ostream &ostr, const TBank &a);
 
 	int getAccountCounter();
 

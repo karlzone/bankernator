@@ -15,10 +15,6 @@
 
 namespace std {
 
-TCustomer::~TCustomer() {
-	// TODO Auto-generated destructor stub
-}
-
 TCustomer::TCustomer(string name, TDate birthday, string street,
 		string streetnr, string postcode, string city) {
 	this->name = name;
@@ -29,6 +25,15 @@ TCustomer::TCustomer(string name, TDate birthday, string street,
 	this->birthday = birthday;
 	this->accountCounter = 0;
 //	accountPtr[0] = getAccountPtr();
+}
+
+TCustomer::~TCustomer() {
+	// TODO Auto-generated destructor stub
+}
+
+ostream &operator<<(ostream &ostr, const TCustomer &a) {
+	//return a.print(ostr);
+	return ostr;
 }
 
 TDate TCustomer::getBirthday() {
@@ -95,11 +100,22 @@ int TCustomer::getAccountCounter() {
  this->sumOfTAccounts = sumOfTAccounts;
  }*/
 
-ostream &operator<<(ostream &ostr, const TBank &a) {
-	//a.print();
-	return ostr;
-}
 
+void TCustomer::addAccount(TAccount* accountPtr) {
+#ifdef DEBUG
+	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr()->getName() << endl;
+	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr() << endl;
+#endif
+
+	this->accountList[accountCounter] = accountPtr;
+
+#ifdef DEBUG
+	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr()->getName() << endl;
+	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr() << endl;
+#endif
+	accountCounter++;
+
+}
 void TCustomer::print() {
 
 	cout << name << endl;
@@ -119,20 +135,21 @@ void TCustomer::print() {
 	}
 
 }
+ostream& TCustomer::print(ostream &ostr){
 
-void TCustomer::addAccount(TAccount* accountPtr) {
-#ifdef DEBUG
-	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr()->getName() << endl;
-	cout << "TCustomer:addAccount:accountList: " << accountPtr->getCustomerPtr() << endl;
-#endif
-
-	this->accountList[accountCounter] = accountPtr;
-
-#ifdef DEBUG
-	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr()->getName() << endl;
-	cout << "TCustomer:addAccount:accountList: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr() << endl;
-#endif
-	accountCounter++;
-
+	ostr << name << endl;
+	ostr << street << endl;
+	ostr << postcode << " " << city << endl;
+	ostr << "born on: ";
+	birthday.print();
+		ostr << endl;
+		ostr << "Accounts:" << endl;
+		for (int i = 0; i < accountCounter; i++) {
+			ostr << "-  Account number:   ";
+			ostr << accountList[i]->getAccountNr() << "  (Balance:    ";
+			accountList[i]->printBalance();
+			ostr << ")" << endl;
+		}
+	return ostr;
 }
 }

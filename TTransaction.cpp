@@ -23,8 +23,15 @@ TTransaction::~TTransaction() {
 }
 
 ostream &operator<<(ostream &ostr, const TTransaction &trans) {
+	ostr << "AccountNr = " << trans.accountNr << endl;
+	ostr << "BLZ = " << trans.BLZ << endl;
+	ostr << "ContraAccountNr = " << trans.contraAccountNr << endl;
+	ostr << "ContraBLZ = " << trans.contraBLZ << endl;
+	ostr << "Amount = " << trans.amount << endl;
+	ostr << "Text = " << trans.comment << endl;
 	return ostr;
 }
+
 istream &operator>>(istream &istr, TTransaction &trans) {
 
 	vector<string> v(0), te(0);
@@ -39,7 +46,7 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 	v.push_back("</ContraAccountNr>");	//
 	v.push_back("<ContraBLZ>");			//7
 	v.push_back("</ContraBLZ>");		//
-	v.push_back("<TMoney>");			//9
+	v.push_back("<Money>");			//9
 	v.push_back("<Text>");				//10
 	v.push_back("</Text>");				//11
 
@@ -54,13 +61,19 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 			if (s.find(v[0]) <= s.size()) {
 				break;
 			} else if (s.find(v[i]) <= s.size()) {
-				if(s.find(v[i+1])<=s.size())
+//				if(s.find(v[i+1])<=s.size())
 				break;
 			}
 
 		}
+#ifdef DEBUG
+		cout << "Transaction: s ="<< s << "case: " << i << endl;
+#endif
 		//substring filter
-		/*switch (i) {
+		switch (i) {
+		case 0:
+			return istr;
+			break;
 			case 1:
 				trans.accountNr = insideString(s,v[i],v[i+1]);// s.substr(v[i].size(),s.find(v[i+1])-v[i].size());
 				break;
@@ -75,40 +88,43 @@ istream &operator>>(istream &istr, TTransaction &trans) {
 				break;
 			case 9:
 				istr >> money;
+				trans.amount = money;
 				break;
 			case 10:
 				trans.comment = insideString(s,v[i],v[i+1]);
 				break;
 			default:
 				break;
-		}*/
+		}
 	}
+
 	return istr;
 }
 
-const string& TTransaction::getAccountNr() const {
-	return this->accountNr;
-}
-
-const TMoney& TTransaction::getAmount() const {
-	return amount;
-}
-
-unsigned TTransaction::getBLZ() {
-	return this->BLZ;
-}
-
-const string& TTransaction::getContraAccountNr() const {
-	return contraAccountNr;
+unsigned TTransaction::getBLZ() const {
+	return BLZ;
 }
 
 unsigned TTransaction::getContraBLZ() const {
 	return contraBLZ;
 }
 
-const string& TTransaction::getText() const {
+const string& TTransaction::getAccountNr() const {
+	return accountNr;
+}
+
+const string& TTransaction::getContraAccountNr() const {
+	return contraAccountNr;
+}
+
+const TMoney& TTransaction::getAmount() const {
+	return amount;
+}
+
+const string& TTransaction::getComment() const {
 	return comment;
 }
+
 
 } /* namespace std */
 

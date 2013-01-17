@@ -62,6 +62,7 @@ public:
 	void addAccount(TAccount * accountPtr);
 
 	void print();
+	ostream &print(ostream &ostr);
 };
 }
 #endif /* TCUSTOMER_H_ */
