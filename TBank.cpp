@@ -5,8 +5,12 @@
 //  Original author: Runge
 ///////////////////////////////////////////////////////////
 
+#include <iostream>
+#include <iomanip>
+
 #include "TBank.h"
 #include "bankernatorFktSum.h"
+#include "TListe.h"
 
 //#define DEBUG
 
@@ -14,8 +18,9 @@ namespace std {
 
 TBank::~TBank() {
 	cout << endl << "All Accounts of Bank: '" << this->name << "' will be deleted" << endl;
-	for (int i = 0; i<this->accountCounter; i++) {
-			delete accountList[i];
+	TListe<TAccount*>::Iterator temp = accountList.begin();
+	for (; temp != this->accountList.end();temp++) {
+			delete *temp;
 	}
 }
 
@@ -32,7 +37,7 @@ void TBank::addAccount(TAccount *accountPtr) {
 	cout << "TBank:addAccount:accountPtr: " << accountPtr->getCustomerPtr() << endl;
 #endif
 
-	this->accountList[accountCounter] = accountPtr;
+	this->accountList.push_back(accountPtr);
 
 #ifdef DEBUG
 	cout << "TBank:addAccount:accountPtr: accountList[" << accountCounter << "]" << accountList[accountCounter]->getCustomerPtr()->getName() << endl;
@@ -75,7 +80,7 @@ string TBank::getName() {
 }
 
 int TBank::getAccountCounter() {
-	return accountCounter;
+	return accountList.size();
 }
 
 void TBank::setName(string name) {
@@ -137,6 +142,7 @@ ostream& operator<<(ostream &ostr, TBank* bank) {
 		//Kopfzeile
 		ostr.width(w);
 		ostr << "Accountnr." << '|';
+
 		ostr.width(w);
 		ostr << "Customer name" << '|';
 		ostr.width(w);

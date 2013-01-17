@@ -4,6 +4,8 @@
 #include <cstddef>     // fuer NULL
 #include <cassert>     // fuer assert
 
+namespace std {
+
 template<class T> class TListe {
 
 private:
@@ -279,7 +281,7 @@ inline const T& TListe<T>::back() const {
 template<class T>
 inline T& TListe<T>::operator[](int Index) {
 	int i;
-	TListe<TAccount *>::Iterator AccountPos = begin();
+	TListe<T>::Iterator AccountPos = begin();
 
 	assert(!empty());
 	assert(Index < size());
@@ -290,4 +292,6 @@ inline T& TListe<T>::operator[](int Index) {
 	return *AccountPos;
 }
 
+} //namespace std
 #endif // TLISTE_H
+

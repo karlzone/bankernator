@@ -26,7 +26,7 @@ private:
 	string name;
 	unsigned BLZ;
 	//TAccount *accountList[MAXBANKACCOUNTS];
-	TListe<TAccount*>::Iterator accountList;
+	TListe<TAccount*> accountList;
 	int accountCounter;
 public:
 
