@@ -12,6 +12,7 @@
 
 #include "TAccount.h"
 #include "bankernatorFktSum.h"
+#include "TListe.h"
 //#include "TBooking.h"
 
 namespace std {
@@ -24,7 +25,8 @@ class TBank {
 private:
 	string name;
 	unsigned BLZ;
-	TAccount *accountList[MAXBANKACCOUNTS];
+	//TAccount *accountList[MAXBANKACCOUNTS];
+	TListe<TAccount*>::Iterator accountList;
 	int accountCounter;
 public:
 
