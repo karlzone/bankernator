@@ -88,6 +88,8 @@ void TBank::setName(string name) {
 }
 
 void TBank::print() {
+	//TODO
+	// cout << *this;
 
 	int w = 20;								//Spaltenbreite in der Anzeige
 	cout << name << endl;
