@@ -152,7 +152,8 @@ unsigned TAccount::getBLZ() {
 }
 
 void TAccount::printBalance() {
-	cout << balance.getAmount() << " " << balance.getCurrency();
+	//cout << balance.getAmount() << " " << balance.getCurrency();
+	cout << balance;
 }
 
 int TAccount::getAtyp() const {

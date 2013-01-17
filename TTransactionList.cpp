@@ -120,7 +120,8 @@ const vector<TTransaction>& TTransactionList::getTransactionsList() const {
 }
 
 ostream& operator<<(ostream &ostr, TTransactionList&ttl) {
-	for (int i = 0; i < ttl.getTransactionCounter(); i++) {
+	//FIXME huh? how dare you to be counter -1??
+	for (int i = 0; i < ttl.getTransactionCounter() - 1; i++) {
 		ostr << endl << "Transaction [" << i << "]" << endl;
 		ostr << ttl.transactionsList[i] << endl;
 	}

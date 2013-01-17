@@ -22,7 +22,7 @@ using namespace std;
 #include "TTransaction.h"
 #include "TTransactionList.h"
 
-#define DEBUG
+//#define DEBUG
 
 TBank* getBank(TBank*, TBank*, unsigned);
 
@@ -52,14 +52,22 @@ int main() {
 			"1357", TMoney(100.0), 1.5);
 	TAccount *Konto4 = new TCurrentAccount(&Kunde3, Bank2, "999777555", "4444",
 			TMoney(200.0));
+#ifdef DEBUG
+	cout << "Geldquelle: " << Geldquelle << endl;
+	cout << "Konto1      " << Konto1     << endl;
+	cout << "Konto2      " << Konto2 << endl;
+	cout << "Konto3      " << Konto3 << endl;
+	cout << "Konto4      " << Konto4 << endl;
+#endif
 	TTransactionList TL(Dateiname);
-	for (unsigned i = 0; i < TL.getTransactionCounter(); i++) {
+	//FIXME huh? how dare you to be counter -1??
+	for (unsigned i = 0; i < TL.getTransactionCounter() - 1; i++) {
 		TAccount *Konto = NULL, *Gegenkonto = NULL;
 		Konto = NULL;
 		Bank = getBank(Bank1, Bank2, TL[i].getBLZ());
 		if (Bank)
 #ifdef DEBUG
-			cout << "Account Zeiger: " <<Bank->getAccountByNr(TL[i].getAccountNr()) << endl;;
+			cout << "Account Zeiger: " <<Bank->getAccountByNr(TL[i].getAccountNr()) << endl;
 #endif
 			Konto = Bank->getAccountByNr(TL[i].getAccountNr());
 		Gegenkonto = NULL;
@@ -72,6 +80,9 @@ int main() {
 		if (Konto && Gegenkonto)
 			TBooking *Buchung = new TBooking(TL[i].getAmount(), Gegenkonto,
 					Konto, TL.getDate(), TL.getTime(), TL[i].getText());
+#ifdef DEBUG
+		cout << "Booking on Transaction [" << i << "] successful" << endl;
+#endif
 	}
 	// Ausgaben:
 	cout << "Transaktionsliste:" << endl << TL << endl;
